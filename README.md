@@ -11,13 +11,13 @@ For a more detailed explanation of IACs, please read [./docs/iota-area-codes.md]
 Install this package using the following commands:
 
 ```shell
-npm install iotaldeger/iota-area-codes
+npm install iotaledger/iota-area-codes
 ```
 
 or
 
 ```shell
-yarn add iotaldeger/iota-area-codes
+yarn add iotaledger/iota-area-codes
 ```
 
 ## Example Usage
