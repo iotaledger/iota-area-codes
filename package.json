@@ -1,0 +1,85 @@
+{
+    "name": "iota-area-codes",
+    "description": "IOTA Area Codes (IAC) JavaScript",
+    "version": "0.1.0",
+    "keywords": [
+        "iota",
+        "area",
+        "code",
+        "zmq"
+    ],
+    "authors": [
+        "Lewis Freiberg <lewis@iota.org>",
+        "Martyn Janes <martyn.janes@iota.org>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/iotaledger/iota-area-codes.git"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "open-location-code-typescript": "^1.4.0"
+    },
+    "scripts": {
+        "build-clean": "rimraf ./es/*",
+        "build-lint": "tslint --project ./tsconfig.json",
+        "build-compile": "tsc",
+        "build-watch": "tsc --watch",
+        "build": "run-s build-clean build-lint build-compile",
+        "test": "jest",
+        "umd": "rollup --config rollup.config.js",
+        "umd-min": "rollup --config rollup.config.js --environment MINIFY:true",
+        "dist-clean": "rimraf ./dist/* ./typings/*",
+        "typings": "tsc --emitDeclarationOnly --declaration true --declarationDir typings",
+        "docs": "jsdoc2md --no-cache --files ./es/**/*.js > ./docs/api.md",
+        "dist": "run-s dist-clean build test umd umd-min typings docs"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
+    "devDependencies": {
+        "@types/jest": "^24.0.9",
+        "@types/node": "^11.10.4",
+        "cross-env": "^5.2.0",
+        "jest": "^24.1.0",
+        "jsdoc-to-markdown": "^4.0.1",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^2.6.3",
+        "rollup": "^1.4.1",
+        "rollup-plugin-commonjs": "^9.2.1",
+        "rollup-plugin-node-resolve": "^4.0.1",
+        "rollup-plugin-terser": "^4.0.4",
+        "rollup-plugin-typescript": "^1.0.0",
+        "rollup-plugin-uglify": "^6.0.2",
+        "ts-jest": "^24.0.0",
+        "ts-node": "^8.0.2",
+        "tslint": "^5.13.1",
+        "tslint-eslint-rules": "^5.4.0",
+        "tslint-microsoft-contrib": "^6.0.0",
+        "typescript": "^3.3.3333"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.ts?$": "ts-jest"
+        },
+        "testRegex": "./test/.*.spec.ts$",
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "collectCoverage": true
+    },
+    "main": "dist/iota-area-codes.js",
+    "module": "es/index.js",
+    "typings": "typings/index.d.ts",
+    "files": [
+        "dist",
+        "lib",
+        "es",
+        "src",
+        "typings"
+    ]
+}
