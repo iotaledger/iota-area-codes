@@ -72,3 +72,9 @@ extracted NPHTQORL9XKP
 ## API Reference
 
 See [./docs/api.md](./docs/api.md)
+
+## Demonstration
+
+A Demonstration application using this library can be found in [./examples/](./examples/README.md)
+
+Which is deployed to <https://iota-poc-area-codes.dag.sh>

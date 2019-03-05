@@ -1,0 +1,37 @@
+{
+    "name": "iota-poc-area-codes-api",
+    "description": "API for IOTA Area Codes",
+    "version": "1.0.0",
+    "author": "Martyn Janes <martyn.janes@iota.org>",
+    "dependencies": {
+        "express": "^4.16.4",
+        "iota-area-codes": "github:iotaledger/iota-area-codes",
+        "socket.io": "^2.2.0",
+        "zeromq": "^5.1.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.16.1",
+        "@types/node": "^11.10.4",
+        "@types/socket.io": "^2.1.2",
+        "@types/zeromq": "^4.6.1",
+        "copyfiles": "^2.1.0",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^2.6.3",
+        "tslint": "^5.13.1",
+        "tslint-eslint-rules": "^5.4.0",
+        "tslint-microsoft-contrib": "^6.0.0",
+        "typescript": "^3.3.3333"
+    },
+    "scripts": {
+        "build-clean": "rimraf ./dist/*",
+        "build-lint": "tslint --project ./tsconfig.json",
+        "build-compile": "tsc",
+        "build-watch": "tsc --watch",
+        "build-config": "copyfiles -u 2 ./src/data/config*.json ./dist/data/",
+        "build": "npm-run-all build-clean build-compile build-lint build-config",
+        "start": "node ./dist/index.js"
+    },
+    "engines": {
+        "node": "10.x.x"
+    }
+}
