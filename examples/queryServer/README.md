@@ -9,7 +9,7 @@ The IAC server has four main functions:
 - Serve queries via a HTTP API
 - Clean the database of old transactions, dependant on TX volume & server specs.
 
-#### Technology
+## Technology
 
 The IAC server relies on the following technologies:
 
@@ -17,7 +17,7 @@ The IAC server relies on the following technologies:
 - ZeroMQ - Message queing protocol utilised by the IRI nodes
 - Micro - Simple HTTP server to handle queries
 
-#### Database Structure
+## Database Structure
 
 The current database schema for the database is as follows:
 
@@ -82,7 +82,7 @@ localhost:3000/initDatabase
 - [ ] Basic HTTP API
   - [x] Map all internal functions to the HTTP API
   - [ ] Rate Limit the API
-  - [ ] Add CORS
+  - [x] Add CORS
   - [ ] Basic Auth?
 - [ ] ZMQ Listener
   - [x] Basic ZMQ code

@@ -25,9 +25,3 @@ export declare function fromOpenLocationCode(openLocationCode: string): string;
  * @returns The Open Location Code.
  */
 export declare function toOpenLocationCode(iotaAreaCode: string): string;
-/**
- * Is the IOTA Area Code valid.
- * @param iotaAreaCode The IOTA Area Code to validate.
- * @returns True if the code is valid.
- */
-export declare function isValid(iotaAreaCode: string): boolean;

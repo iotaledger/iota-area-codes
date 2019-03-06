@@ -41,14 +41,18 @@ class IACTransactionCard extends Component<IACTransactionCardProps, IACTransacti
         this._configuration = ServiceFactory.get<ConfigurationService<IConfiguration>>("configuration").get();
         this._tangleExplorerService = ServiceFactory.get<TangleExplorerService>("tangleExplorer");
 
-        // tslint:disable-next-line:completed-docs
-        const payload = TrytesHelper.fromTrytes<{ message: string }>(this.props.transaction.signatureMessageFragment);
+        let payloadMessage = "";
+        if (this.props.transaction) {
+            // tslint:disable-next-line:completed-docs
+            const payload = TrytesHelper.fromTrytes<{ message: string }>(this.props.transaction.signatureMessageFragment);
+            payloadMessage = payload.message;
+        }
 
         this._area = IotaAreaCodes.decode(this.props.iotaAreaCode);
 
         this.state = {
             showMap: false,
-            message: payload.message
+            message: payloadMessage
         };
     }
 
@@ -59,11 +63,14 @@ class IACTransactionCard extends Component<IACTransactionCardProps, IACTransacti
     public render(): ReactNode {
         return (
             <div className="iac-transaction-card">
-                <div className="iac-transaction--title">
+                <div className="iac-transaction--iac">
+                    {this.props.iotaAreaCode}
+                </div>
+                <div className="iac-transaction--message">
                     {this.state.message}
                 </div>
                 <div className="iac-transaction--actions">
-                    <Button long={true} onClick={() => this._tangleExplorerService.transaction(this.props.transaction.hash)}>{this.props.transaction.hash}</Button>
+                    <Button long={true} onClick={() => this._tangleExplorerService.transaction(this.props.transactionHash)}>{this.props.transactionHash}</Button>
                 </div>
                 <div className="iac-transaction--map-container">
                     <a

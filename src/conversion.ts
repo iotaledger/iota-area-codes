@@ -2,6 +2,8 @@ import OpenLocationCode from "open-location-code-typescript";
 import { IAC_APHABET, OLC_APHABET } from "./alphabet";
 import { CodePrecision } from "./codePrecision";
 import { IacCodeArea } from "./iacCodeArea";
+import { iacToOlcInternal } from "./internal";
+import { isValid } from "./validation";
 
 /**
  * Encode a location into an IOTA Area Code.
@@ -66,38 +68,4 @@ export function toOpenLocationCode(iotaAreaCode: string): string {
     }
 
     return iacToOlcInternal(iotaAreaCode);
-}
-
-/**
- * Is the IOTA Area Code valid.
- * @param iotaAreaCode The IOTA Area Code to validate.
- * @returns True if the code is valid.
- */
-export function isValid(iotaAreaCode: string): boolean {
-    // Check if all the characters fall within our alphabet
-    const re = new RegExp(`^[${IAC_APHABET}]*$`);
-
-    let codeIsValid = re.test(iotaAreaCode);
-    if (codeIsValid) {
-        // Now validate using OLC validation
-        codeIsValid = OpenLocationCode.isValid(iacToOlcInternal(iotaAreaCode));
-    }
-
-    return codeIsValid;
-}
-
-/**
- * Convert the IOTA Area Code to Open Location Code with no validation.
- * @private
- * @param iotaAreaCode The IOTA Area Code to convert.
- * @returns The Open Location Code.
- */
-function iacToOlcInternal(iotaAreaCode: string): string {
-    let olc = "";
-    for (let i = 0; i < iotaAreaCode.length; i++) {
-        const idx = IAC_APHABET.indexOf(iotaAreaCode[i]);
-        olc += OLC_APHABET[idx];
-    }
-
-    return olc;
 }

@@ -33,7 +33,7 @@ For those needing more precision, an additional, optional character can be used 
 
 ## Why would we want this
 
-When publishing information on IOTA there is no way to easily identify transactions that relate to a geographic areas. These transactions could contain localised service advertisements, sensor information or any number of other data formats. 
+When publishing information on IOTA there is no way to easily identify transactions that relate to a geographic areas. These transactions could contain localised service advertisements, sensor information or any number of other data formats.
 
 In order to find transactions related to an area you'd have to register your transactions with a centralised service, like a data marketplace, that collects locations to store and serve it to consumers. By using IACs in the first 11 trytes of the 27 tryte `tag` field in an IOTA transaction, we can localise an IOTA transaction to a 2.8m by 3.5m area. This allows for someone to find a transaction related to a small area, however the **real value** of this system comes from the ability to query large swaths of land for related transactions.
 

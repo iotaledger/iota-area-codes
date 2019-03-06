@@ -13,8 +13,17 @@
       flex-direction: column;
     }
   
-    .iac-transaction--title {
-      flex: 1 0 100%;
+    .iac-transaction--message {
+      flex: 1 0 50%;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .iac-transaction--iac {
+      flex: 1 0 50%;
       margin-bottom: 20px;
       font-size: 20px;
       font-size: 1.25rem;

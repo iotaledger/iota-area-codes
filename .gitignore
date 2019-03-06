@@ -1,3 +1,4 @@
+.vscode
 .history
 node_modules
 /coverage
@@ -5,3 +6,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .env
+build
+dist
+/examples/api/src/data/config.dev.json
+/examples/api/src/data/config.local.json
+/examples/api/src/data/config.staging.json
+/examples/api/src/data/config.prod.json
+/examples/client/public/data/config.dev.json
+/examples/client/public/data/config.local.json
+/examples/client/public/data/config.staging.json
+/examples/client/public/data/config.prod.json

@@ -11,12 +11,12 @@ import { ApiClient } from "../../services/apiClient";
 import { ConfigurationService } from "../../services/configurationService";
 import { TangleExplorerService } from "../../services/tangleExplorerService";
 import IACTransactionCard from "../components/IACTransactionCard";
-import { ServerState } from "./ServerState";
+import { CreateState } from "./CreateState";
 
 /**
- * Component which will show use of server api.
+ * Component which will show use of zmq api.
  */
-class Server extends Component<any, ServerState> {
+class Create extends Component<any, CreateState> {
     /**
      * The configuration.
      */
@@ -48,7 +48,7 @@ class Server extends Component<any, ServerState> {
     private _highlight: any;
 
     /**
-     * Create a new instance of Server.
+     * Create a new instance of Create.
      * @param props The props.
      */
     constructor(props: any) {
@@ -77,7 +77,7 @@ class Server extends Component<any, ServerState> {
             <React.Fragment>
                 <Heading level={1}>Create IAC Transaction</Heading>
                 <p>Select an area on the map and create a transaction tagged with that location.
-                    Once the transaction is created the server should identify it in the ZMQ feed and return it to the client.</p>
+                    Once the transaction is confirmed the server should identify it in the ZMQ feed and return it to the client.</p>
                 <Form>
                     <div className="map-container">
                         <GoogleMapReact
@@ -114,7 +114,7 @@ class Server extends Component<any, ServerState> {
                     <FormStatus message={this.state.status} isBusy={this.state.isBusy} isError={this.state.isErrored} />
                     {this.state.transactionHash && (
                         <React.Fragment>
-                            <p>You can view the transaction on the Tangle here, it should also appear in the Transactions list when detected by the ZMQ Server.</p>
+                            <p>You can view the transaction on the Tangle here, it should also appear in the Transactions list when confirmed and detected by the ZMQ Server.</p>
                             <ButtonContainer>
                                 <Button color="secondary" long={true} onClick={() => this._tangleExplorerService.transaction(this.state.transactionHash)}>{this.state.transactionHash}</Button>
                             </ButtonContainer>
@@ -126,7 +126,7 @@ class Server extends Component<any, ServerState> {
                         <p>There are currently no IAC transactions to show.</p>
                     )}
                     {this.state.iacTransactions.length > 0 && this.state.iacTransactions.map(item => (
-                        <IACTransactionCard key={item.transaction.hash} iotaAreaCode={item.iac} transaction={item.transaction} />
+                        <IACTransactionCard key={item.transaction.hash} iotaAreaCode={item.iac} transactionHash={item.transaction.hash} transaction={item.transaction} />
                     ))}
 
                 </Form>
@@ -232,7 +232,7 @@ class Server extends Component<any, ServerState> {
     }
 
     /**
-     * Handle an IAC transaction from the server.
+     * Handle an IAC transaction from the zmq feed.
      * @param iac The IOTA Area Code.
      * @param trytes The trytes for the transaction.
      */
@@ -242,4 +242,4 @@ class Server extends Component<any, ServerState> {
     }
 }
 
-export default Server;
+export default Create;

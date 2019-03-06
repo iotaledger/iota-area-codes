@@ -12,7 +12,8 @@ You should copy `./public/data/config.template.json` to `./public/data/config.de
         "mwm": 9                                 /* MWM to use for attaches */
     },
     "seed": "SEED",                              /* Seed to use for attaching transactions */
-    "apiEndpoint": "ENDPOINT",                   /* The url of the api endpoint e.g. https://api.my-domain.com */
+    "apiEndpoint": "API-ENDPOINT",               /* The url of the api endpoint e.g. https://api.my-domain.com */
+    "queryEndpoint": "QUERY-ENDPOINT",           /* The url of the query endpoint e.g. https://query.my-domain.com */
     "tangleExplorer": {
         "transactions": "https://thetangle.org/transaction/:transactionHash",
         "bundles": "https://thetangle.org/bundle/:bundleHash"

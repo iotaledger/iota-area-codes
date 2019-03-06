@@ -619,6 +619,63 @@
     var IAC_APHABET = "FGHJKLMNOPQRSTUVXWYZA9";
 
     /**
+     * Convert the IOTA Area Code to Open Location Code with no validation.
+     * @private
+     * @param iotaAreaCode The IOTA Area Code to convert.
+     * @returns The Open Location Code.
+     */
+    function iacToOlcInternal(iotaAreaCode) {
+        var olc = "";
+        for (var i = 0; i < iotaAreaCode.length; i++) {
+            var idx = IAC_APHABET.indexOf(iotaAreaCode[i]);
+            olc += OLC_APHABET[idx];
+        }
+        return olc;
+    }
+
+    /**
+     * Is the IOTA Area Code valid.
+     * @param iotaAreaCode The IOTA Area Code to validate.
+     * @returns True if the code is valid.
+     */
+    function isValid(iotaAreaCode) {
+        // Check if all the characters fall within our alphabet
+        var re = new RegExp("^[" + IAC_APHABET + "]*$");
+        var codeIsValid = re.test(iotaAreaCode);
+        if (codeIsValid) {
+            // Now validate using OLC validation
+            codeIsValid = OpenLocationCode.isValid(iacToOlcInternal(iotaAreaCode));
+        }
+        return codeIsValid;
+    }
+    /**
+     * Is the IOTA Area Code a valid partial code.
+     * @param iotaAreaCode The IOTA Area Code to validate.
+     * @returns True if the code is a partial.
+     */
+    function isValidPartial(iotaAreaCode) {
+        if (iotaAreaCode === undefined || iotaAreaCode === null || typeof iotaAreaCode !== "string" || iotaAreaCode.length > 8) {
+            return false;
+        }
+        else {
+            if (!iotaAreaCode.endsWith("AA")) {
+                return false;
+            }
+            else {
+                var remaining = iotaAreaCode.replace(/A*$/g, "");
+                if (remaining.length < 2 || iotaAreaCode.length % 2 === 1) {
+                    return false;
+                }
+                else {
+                    // Check if all the remaining characters before the AA are within our alphabet
+                    var re = new RegExp("^[" + IAC_APHABET.substr(0, 20) + "]*$");
+                    return re.test(remaining);
+                }
+            }
+        }
+    }
+
+    /**
      * Encode a location into an IOTA Area Code.
      * @param latitude The latitude in signed decimal degrees. Values less than -90 will be clipped to -90, values over 90 will be clipped to 90.
      * @param longitude The longitude in signed decimal degrees. This will be normalised to the range -180 to 180.
@@ -676,35 +733,6 @@
         }
         return iacToOlcInternal(iotaAreaCode);
     }
-    /**
-     * Is the IOTA Area Code valid.
-     * @param iotaAreaCode The IOTA Area Code to validate.
-     * @returns True if the code is valid.
-     */
-    function isValid(iotaAreaCode) {
-        // Check if all the characters fall within our alphabet
-        var re = new RegExp("^[" + IAC_APHABET + "]*$");
-        var codeIsValid = re.test(iotaAreaCode);
-        if (codeIsValid) {
-            // Now validate using OLC validation
-            codeIsValid = OpenLocationCode.isValid(iacToOlcInternal(iotaAreaCode));
-        }
-        return codeIsValid;
-    }
-    /**
-     * Convert the IOTA Area Code to Open Location Code with no validation.
-     * @private
-     * @param iotaAreaCode The IOTA Area Code to convert.
-     * @returns The Open Location Code.
-     */
-    function iacToOlcInternal(iotaAreaCode) {
-        var olc = "";
-        for (var i = 0; i < iotaAreaCode.length; i++) {
-            var idx = IAC_APHABET.indexOf(iotaAreaCode[i]);
-            olc += OLC_APHABET[idx];
-        }
-        return olc;
-    }
 
     /**
      * Extract an IOTA Area Code from trytes.
@@ -722,8 +750,9 @@
     exports.decode = decode;
     exports.fromOpenLocationCode = fromOpenLocationCode;
     exports.toOpenLocationCode = toOpenLocationCode;
-    exports.isValid = isValid;
     exports.extract = extract;
+    exports.isValid = isValid;
+    exports.isValidPartial = isValidPartial;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

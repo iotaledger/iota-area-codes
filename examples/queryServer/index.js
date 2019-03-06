@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { json, send } = require('micro')
+const cors = require('micro-cors')({ allowMethods: ['OPTIONS', 'GET', 'POST'] })
 
 /// Pull in helpers
 const {
@@ -9,28 +10,31 @@ const {
 } = require('./components/db')
 const zmq = require('./components/zmq')
 
-module.exports = async (req, res) => {
+module.exports = cors(async (req, res) => {
   let response
-  switch (req.url) {
-    //// Un-comment when testing
-    // case '/initDatabase':
-    //   initCassandra()
-    //   response = { message: 'Initalizing Cassandra db' }
-    //   break
-    // case '/startSubscribing':
-    //   subscribeToZMQ()
-    //   response = { message: 'Subscribing to ZMQ' }
-    //   break
-    case '/fetch':
-      response = await fetchTransactions()
-      break
-    case '/query':
-      const js = await json(req)
-      response = await queryTransactions(js.iac)
-      break
-    default:
-      return res.end('Route not found')
+  try {
+    switch (req.url) {
+      //// Un-comment when testing
+      // case '/initDatabase':
+      //   initCassandra()
+      //   response = { message: 'Initalizing Cassandra db' }
+      //   break
+      // case '/startSubscribing':
+      //   subscribeToZMQ()
+      //   response = { message: 'Subscribing to ZMQ' }
+      //   break
+      case '/fetch':
+        response = await fetchTransactions()
+        break
+      case '/query':
+        const js = await json(req)
+        response = await queryTransactions(js.iac)
+        break
+      default:
+        return send(res, 404, 'Not found')
+    }
+  } catch (err) {
+    return send(res, 200, { success: false, message: err.message })
   }
-  const string = JSON.stringify(response)
-  return send(res, 200, string)
-}
+  return send(res, 200, response)
+});

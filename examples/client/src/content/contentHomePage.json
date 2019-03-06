@@ -30,8 +30,12 @@
                     "text": "Conversion"
                 },
                 {
-                    "href": "/server",
-                    "text": "Server"
+                    "href": "/create",
+                    "text": "Create"
+                },
+                {
+                    "href": "/query",
+                    "text": "Query"
                 }
             ]
         },

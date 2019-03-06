@@ -13,6 +13,11 @@ export interface IConfiguration {
     apiEndpoint: string;
 
     /**
+     * The query endpoint for the IOTA Area Codes.
+     */
+    queryEndpoint: string;
+
+    /**
      * The tangle explorer configuration.
      */
     tangleExplorer: ITangleExplorerConfiguration;

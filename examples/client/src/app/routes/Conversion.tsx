@@ -6,12 +6,12 @@ import { ServiceFactory } from "../../factories/serviceFactory";
 import { IConfiguration } from "../../models/config/IConfiguration";
 import { ConfigurationService } from "../../services/configurationService";
 import "./Conversion.scss";
-import { ConversionFileState } from "./ConversionState";
+import { ConversionState } from "./ConversionState";
 
 /**
  * Component which will show conversions with IACs.
  */
-class Conversion extends Component<any, ConversionFileState> {
+class Conversion extends Component<any, ConversionState> {
     /**
      * The configuration.
      */
@@ -42,6 +42,8 @@ class Conversion extends Component<any, ConversionFileState> {
         this._configuration = ServiceFactory.get<ConfigurationService<IConfiguration>>("configuration").get();
 
         this.state = {
+            userIotaAreaCode: "",
+            userOpenLocationCode: ""
         };
     }
 
@@ -231,9 +233,9 @@ class Conversion extends Component<any, ConversionFileState> {
      */
     private reset(): void {
         this.setState({
-            userIotaAreaCode: undefined,
+            userIotaAreaCode: "",
             userIotaAreaCodeIsValid: undefined,
-            userOpenLocationCode: undefined,
+            userOpenLocationCode: "",
             userOpenLocationCodeIsValid: undefined,
             latitude: undefined,
             longitude: undefined,

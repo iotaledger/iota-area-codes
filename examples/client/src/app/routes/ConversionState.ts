@@ -1,9 +1,9 @@
 
-export interface ConversionFileState {
+export interface ConversionState {
     /**
      * The user entered iota area code.
      */
-    userIotaAreaCode?: string;
+    userIotaAreaCode: string;
 
     /**
      * The user entered open iota area is valid.
@@ -13,7 +13,7 @@ export interface ConversionFileState {
     /**
      * The user entered open location code.
      */
-    userOpenLocationCode?: string;
+    userOpenLocationCode: string;
 
     /**
      * The user entered open location code is valid.

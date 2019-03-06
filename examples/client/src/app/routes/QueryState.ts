@@ -1,6 +1,6 @@
 import { Transaction } from "@iota/core/typings/types";
 
-export interface ServerState {
+export interface QueryState {
     /**
      * Is the form busy.
      */
@@ -17,24 +17,19 @@ export interface ServerState {
     status: string;
 
     /**
-     * The IAC for the transaction.
+     * The user entered iota area code.
      */
-    iotaAreaCode: string;
+    userIotaAreaCode: string;
 
     /**
-     * Add a transaction message.
+     * The user entered open iota area is valid.
      */
-    txMessage: string;
-
-    /**
-     * Transaction hash.
-     */
-    transactionHash?: string;
+    userIotaAreaCodeIsValid?: boolean;
 
     /**
      * IAC Transactions from the ZMQ Server.
      */
-    iacTransactions: {
+    iacTransactions?: {
         /**
          * The IOTA Area Code for the transaction.
          */
@@ -42,6 +37,6 @@ export interface ServerState {
         /**
          * The transaction object.
          */
-        transaction: Transaction;
+        tx_id: string;
     }[];
 }

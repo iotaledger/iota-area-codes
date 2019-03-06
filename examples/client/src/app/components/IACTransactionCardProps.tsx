@@ -7,7 +7,12 @@ export interface IACTransactionCardProps {
     iotaAreaCode: string;
 
     /**
+     * The transaction hash.
+     */
+    transactionHash: string;
+
+    /**
      * The transaction.
      */
-    transaction: Transaction;
+    transaction?: Transaction;
 }

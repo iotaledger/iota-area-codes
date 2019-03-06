@@ -6,6 +6,7 @@
     },
     "seed": "IOTA9AREA9CODES9XNCLYL9BEK9ETERVWOETBLQLKRSACDKRXDQMBAWHNVHKTA9PEGTKKSMCBHMCCTBMEW",
     "apiEndpoint": "http://localhost:4000",
+    "queryEndpoint": "http://localhost:3000",
     "tangleExplorer": {
         "transactions": "https://devnet.thetangle.org/transaction/:transactionHash",
         "bundles": "https://devnet.thetangle.org/bundle/:bundleHash"

@@ -10,7 +10,8 @@ import { ConfigurationService } from "../services/configurationService";
 import { TangleExplorerService } from "../services/tangleExplorerService";
 import { AppState } from "./AppState";
 import Conversion from "./routes/Conversion";
-import Server from "./routes/Server";
+import Create from "./routes/Create";
+import Query from "./routes/Query";
 
 /**
  * Main application class.
@@ -81,7 +82,8 @@ class App extends Component<RouteComponentProps, AppState> {
                 />
                 <nav className="tablet-down-hidden">
                     <Link className="link" to="/">Conversion</Link>
-                    <Link className="link" to="/server">Server</Link>
+                    <Link className="link" to="/create">Create</Link>
+                    <Link className="link" to="/query">Query</Link>
                 </nav>
                 <SideMenu
                     isMenuOpen={this.state.isSideMenuOpen}
@@ -99,8 +101,12 @@ class App extends Component<RouteComponentProps, AppState> {
                                             link: "/"
                                         },
                                         {
-                                            name: "Server",
-                                            link: "/server"
+                                            name: "Create",
+                                            link: "/create"
+                                        },
+                                        {
+                                            name: "Query",
+                                            link: "/query"
                                         }
                                     ]
                                 }
@@ -116,8 +122,9 @@ class App extends Component<RouteComponentProps, AppState> {
                         {!this.state.status && (
                             <Switch>
                                 <Route exact={true} path="/" component={() => (<Conversion hash={Date.now()} />)} />
-                                <Route exact={true} path="/server" component={() => (<Server hash={Date.now()} />)} />
-                        </Switch>
+                                <Route exact={true} path="/create" component={() => (<Create hash={Date.now()} />)} />
+                                <Route exact={true} path="/query" component={() => (<Query hash={Date.now()} />)} />
+                            </Switch>
                         )}
                     </LayoutAppSingle>
                 </section>

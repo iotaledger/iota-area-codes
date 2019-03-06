@@ -1,5 +1,5 @@
 import { CodePrecision } from "../src/codePrecision";
-import { decode, encode, fromOpenLocationCode, isValid, toOpenLocationCode } from "../src/conversion";
+import { decode, encode, fromOpenLocationCode, toOpenLocationCode } from "../src/conversion";
 
 const testData: any[] = [
     { iac: "NPHTQORL9XKP", olc: "9F4MGCH7+R6F", latitude: 52.529562, longitude: 13.413047 },
@@ -76,21 +76,4 @@ test("fromOpenLocationCode() converts from olc to iac with failure", () => {
     expect(() => {
         fromOpenLocationCode("999");
     }).toThrowError(/not valid/);
-});
-
-test("isValid() can validate iac values", () => {
-    const validations = [
-        { value: undefined, isValid: false },
-        { value: null, isValid: false },
-        { value: false, isValid: false },
-        { value: true, isValid: false },
-        { value: 1, isValid: false },
-        { value: "", isValid: false },
-        { value: "0", isValid: false },
-        { value: "9", isValid: false }
-    ];
-
-    for (let i = 0; i < validations.length; i++) {
-        expect(isValid(<any>validations[i].value)).toBe(validations[i].isValid);
-    }
 });

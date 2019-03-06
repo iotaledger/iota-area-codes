@@ -12,8 +12,8 @@ sock.subscribe('tx_trytes')
 
 sock.on('message', msg => {
   const data = msg.toString().split(' ') // Split to get topic & data
+  const tx_id = data[2] // TX Hash
   const tag = data[1].slice(2592, 2619) // Extract tag
-  const tx_id = data[1].slice(2349, 2430) // Extract TX Hash
   const iac = extract(tag) // Check that the tag is correct
 
   // Qualify TAG

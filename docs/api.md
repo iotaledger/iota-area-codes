@@ -21,11 +21,14 @@
 <dt><a href="#toOpenLocationCode">toOpenLocationCode(iotaAreaCode)</a> ⇒</dt>
 <dd><p>Convert the IOTA Area Code to Open Location Code.</p>
 </dd>
+<dt><a href="#extract">extract(trytes)</a> ⇒</dt>
+<dd><p>Extract an IOTA Area Code from trytes.</p>
+</dd>
 <dt><a href="#isValid">isValid(iotaAreaCode)</a> ⇒</dt>
 <dd><p>Is the IOTA Area Code valid.</p>
 </dd>
-<dt><a href="#extract">extract(trytes)</a> ⇒</dt>
-<dd><p>Extract an IOTA Area Code from trytes.</p>
+<dt><a href="#isValidPartial">isValidPartial(iotaAreaCode)</a> ⇒</dt>
+<dd><p>Is the IOTA Area Code a valid partial code.</p>
 </dd>
 </dl>
 
@@ -102,6 +105,18 @@ Convert the IOTA Area Code to Open Location Code.
 | --- | --- |
 | iotaAreaCode | The IOTA Area Code to convert. |
 
+<a name="extract"></a>
+
+## extract(trytes) ⇒
+Extract an IOTA Area Code from trytes.
+
+**Kind**: global function  
+**Returns**: The IOTA Area Code if one could be extracted, or undefined.  
+
+| Param | Description |
+| --- | --- |
+| trytes | The trytes from which to try and extract the IOTA Area Code. |
+
 <a name="isValid"></a>
 
 ## isValid(iotaAreaCode) ⇒
@@ -114,15 +129,15 @@ Is the IOTA Area Code valid.
 | --- | --- |
 | iotaAreaCode | The IOTA Area Code to validate. |
 
-<a name="extract"></a>
+<a name="isValidPartial"></a>
 
-## extract(trytes) ⇒
-Extract an IOTA Area Code from trytes.
+## isValidPartial(iotaAreaCode) ⇒
+Is the IOTA Area Code a valid partial code.
 
 **Kind**: global function  
-**Returns**: The IOTA Area Code if one could be extracted, or undefined.  
+**Returns**: True if the code is a partial.  
 
 | Param | Description |
 | --- | --- |
-| trytes | The trytes from which to try and extract the IOTA Area Code. |
+| iotaAreaCode | The IOTA Area Code to validate. |
 

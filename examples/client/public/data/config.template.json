@@ -5,7 +5,8 @@
         "mwm": 9
     },
     "seed": "SEED",
-    "apiEndpoint": "ENDPOINT",
+    "apiEndpoint": "API-ENDPOINT",
+    "queryEndpoint": "QUERY-ENDPOINT",
     "tangleExplorer": {
         "transactions": "https://devnet.thetangle.org/transaction/:transactionHash",
         "bundles": "https://devnet.thetangle.org/bundle/:bundleHash"

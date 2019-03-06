@@ -1,4 +1,8 @@
 {
+  "name": "iota-poc-area-codes-query",
+  "description": "Query Server for IOTA Area Codes",
+  "version": "1.0.0",
+  "author": "Lewis Freiberg <lewis@iota.org>",
   "main": "index.js",
   "scripts": {
     "start": "micro"
@@ -8,6 +12,7 @@
     "dotenv": "^6.2.0",
     "iota-area-codes": "github:iotaledger/iota-area-codes",
     "micro": "^9.3.3",
+    "micro-cors": "^0.1.1",
     "zeromq": "^5.1.0"
   }
 }
