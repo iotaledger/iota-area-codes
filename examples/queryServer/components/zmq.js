@@ -10,7 +10,7 @@ sock.connect(process.env.ZMQ_URL)
 
 sock.subscribe('tx_trytes')
 
-sock.on('message', msg => {
+sock.on('message', async msg => {
   const data = msg.toString().split(' ') // Split to get topic & data
   const tx_id = data[2] // TX Hash
   const tag = data[1].slice(2592, 2619) // Extract tag
@@ -20,18 +20,8 @@ sock.on('message', msg => {
   if (iac) {
     console.log('IAC:', iac)
     console.log('Tx Hash:', tx_id)
-    storeTx(tx_id, iac) /// Add TX to buffer for batched upload to server
+    await storeTransaction({ tx_id, iac })
   }
-  return
 })
 
-let buffer = []
-const storeTx = async (tx_id, iac) => {
-  buffer.push({ tx_id, iac })
-  if (buffer.length > 2) {
-    await storeTransaction(buffer)
-    buffer = []
-    console.log('Stored')
-  }
-}
 module.exports = {}
