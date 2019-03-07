@@ -51,6 +51,7 @@ class Query extends Component<any, QueryState> {
                 <Heading level={1}>Query</Heading>
                 <p>Enter a partial IOTA Area Code to search the database for transactions, maximum 8 characters and end the code with AA pairs for wildcard matches.</p>
                 <p>Example queries could be NPAA or NPHTAA.</p>
+                <p>Transactions may not appear immediately after they have been created, as they take time to propagate from the attaching Node to the ZMQ Node.</p>
                 <Form>
                     <Fieldset>
                         <label>IOTA Area Code</label>
@@ -108,7 +109,8 @@ class Query extends Component<any, QueryState> {
             {
                 isBusy: true,
                 isErrored: false,
-                status: "Querying transactions, please wait..."
+                status: "Querying transactions, please wait...",
+                iacTransactions: undefined
             },
             async () => {
                 const response = await this._queryClient.query({
