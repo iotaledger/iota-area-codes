@@ -1,20 +1,20 @@
-interface Transactions {
-  iac: string
-  tx_id: string
-}
-
 export interface IACMapState {
-  /**
-   * Should we show the map.
-   */
-  transactions: Array<Transactions>
+    /**
+     * The center for the map.
+     */
+    mapCenter: {
+        /**
+         * The latitude for the center.
+         */
+        latitude: number;
+        /**
+         * The longitude for the center.
+         */
+        longitude: number;
+    };
 
-  mapCenter: any
-
-  zoom: any
-
-  tx?: {
-    iac: string
-    tx_id: string
-  }
+    /**
+     * The zoom for the map.
+     */
+    zoom: number;
 }
