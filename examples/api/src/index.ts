@@ -32,10 +32,12 @@ app.get("/", (req, res) => {
  * Listen for incoming connections on the websocket.
  */
 socketServer.on("connection", (socket) => {
+    console.log("Socket connected");
     connectedSockets.push(socket);
     socket.on("disconnect", () => {
         const idx = connectedSockets.indexOf(socket);
         if (idx >= 0) {
+            console.log("Socket disconnected");
             connectedSockets.splice(idx, 1);
         }
     });
