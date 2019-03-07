@@ -34,8 +34,11 @@ test("isValidPartial() can validate iac values", () => {
         { value: "NPHTQORL9", isValid: false },
         { value: "NPHTQORL", isValid: false },
         { value: "AA", isValid: false },
-        { value: "NPHTQOAA", isValid: true },
-        { value: "NPHTQOA", isValid: false }
+        { value: "NPHTQOA", isValid: false },
+        { value: "NPHTQOAA", isValid: false },
+        { value: "NPHTQONN9", isValid: false },
+        { value: "AAAAAAAA9", isValid: false },
+        { value: "NPHTQOAA9", isValid: true }
     ];
 
     for (let i = 0; i < validations.length; i++) {

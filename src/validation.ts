@@ -26,18 +26,18 @@ export function isValid(iotaAreaCode: string): boolean {
  * @returns True if the code is a partial.
  */
 export function isValidPartial(iotaAreaCode: string): boolean {
-    if (iotaAreaCode === undefined || iotaAreaCode === null || typeof iotaAreaCode !== "string" || iotaAreaCode.length > 8) {
+    if (iotaAreaCode === undefined || iotaAreaCode === null || typeof iotaAreaCode !== "string" || iotaAreaCode.length > 9) {
         return false;
     } else {
-        if (!iotaAreaCode.endsWith("AA")) {
+        if (!iotaAreaCode.endsWith("AA9")) {
             return false;
         } else {
-            const remaining = iotaAreaCode.replace(/A*$/g, "");
+            const remaining = iotaAreaCode.replace(/A*9$/, "");
 
-            if (remaining.length < 2 || iotaAreaCode.length % 2 === 1) {
+            if (remaining.length < 2 || remaining.length % 2 === 1) {
                 return false;
             } else {
-                // Check if all the remaining characters before the AA are within our alphabet
+                // Check if all the remaining characters before the AA*9 are within our alphabet
                 const re = new RegExp(`^[${IAC_APHABET.substr(0, 20)}]*$`);
 
                 return re.test(remaining);

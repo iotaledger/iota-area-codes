@@ -3,6 +3,7 @@ const client = new cassandra.Client({
   contactPoints: [process.env.DB_URL],
   localDataCenter: 'datacenter1'
 })
+const { isValidPartial } = require('@iota/area-codes')
 
 // INIT DB
 const initKeyspace = async () => {
@@ -76,12 +77,8 @@ const fetchTransactions = async () => {
 }
 
 const queryTransactions = async iac => {
-  if (!iac || iac.length <= 2) {
-    throw new Error('The IOTA Area Code must be greater than 2 characters')
-  } else if (!iac.endsWith('AA')) {
-    throw new Error("The IOTA Area Code must end with AA")
-  } else if (iac.length > 8) {
-    throw new Error("The IOTA Area Code must less than 8 characters")
+  if (!isValidPartial(iac)) {
+    throw new Error('The IOTA Area Code must be a full partial with 9 characters')
   }
   const iacArray = iac.split('')
   const pairs = iacArray.indexOf('A') / 2

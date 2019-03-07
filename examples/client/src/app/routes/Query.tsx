@@ -49,9 +49,10 @@ class Query extends Component<any, QueryState> {
         return (
             <React.Fragment>
                 <Heading level={1}>Query</Heading>
-                <p>Enter a partial IOTA Area Code to search the database for transactions, maximum 8 characters and end the code with AA pairs for wildcard matches.</p>
-                <p>Example queries could be NPAA or NPHTAA.</p>
-                <p>Transactions may not appear immediately after they have been created, as they take time to propagate from the attaching Node to the ZMQ Node.</p>
+                <p>Enter a partial IOTA Area Code to search the database for transactions.<br />
+                    The code should be 9 characters long and end in a AA9. To have a wildcard for any other part of the location use padding character pairs of AA.<br />
+                    Example queries could be NPAAAAAA9 or NPHTAAAA9.<br />
+                    Transactions may not appear immediately after they have been created, as they take time to propagate from the attaching Node to the ZMQ Node.</p>
                 <Form>
                     <Fieldset>
                         <label>IOTA Area Code</label>
@@ -77,7 +78,7 @@ class Query extends Component<any, QueryState> {
                         </React.Fragment>
                     )}
                 </Form>
-                <hr/>
+                <hr />
                 <p>For further information on how this code is implemeted visit the GitHub Repository for
                     the main library [<a href="https://github.com/iotaledger/iota-area-codes" target="_blank" rel="noreferrer noopener">@iota/area-codes</a>]
                     , the web app [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/client" target="_blank" rel="noreferrer noopener">Client</a>]
