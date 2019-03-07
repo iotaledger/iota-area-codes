@@ -5,12 +5,12 @@
     "author": "Martyn Janes <martyn.janes@iota.org>",
     "license": "MIT",
     "dependencies": {
+        "@iota/area-codes": "github:iotaledger/iota-area-codes",
         "@iota/core": "^1.0.0-beta.11",
         "axios": "^0.18.0",
         "babel-jest": "^23.6.0",
         "classnames": "^2.2.6",
         "google-map-react": "^1.1.2",
-        "iota-area-codes": "github:iotaledger/iota-area-codes",
         "iota-css-theme": "github:iotaledger/iota-css-theme",
         "iota-react-components": "github:iotaledger/iota-react-components",
         "react": "^16.8.3",

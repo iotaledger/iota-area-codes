@@ -1,6 +1,6 @@
+import * as IotaAreaCodes from "@iota/area-codes";
 import classnames from "classnames";
 import GoogleMapReact from "google-map-react";
-import * as IotaAreaCodes from "iota-area-codes";
 import { Button } from "iota-react-components";
 import React, { Component, ReactNode } from "react";
 import { ServiceFactory } from "../../factories/serviceFactory";

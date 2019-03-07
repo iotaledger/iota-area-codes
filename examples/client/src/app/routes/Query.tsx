@@ -1,4 +1,4 @@
-import * as IotaAreaCodes from "iota-area-codes";
+import * as IotaAreaCodes from "@iota/area-codes";
 import { Button, Fieldset, Form, FormStatus, Heading } from "iota-react-components";
 import React, { Component, ReactNode } from "react";
 import { ServiceFactory } from "../../factories/serviceFactory";
@@ -49,7 +49,8 @@ class Query extends Component<any, QueryState> {
         return (
             <React.Fragment>
                 <Heading level={1}>Query</Heading>
-                <p>Enter a partial IOTA Area Code to search the database for transactions, end the code with AA pairs for wildcard matches.</p>
+                <p>Enter a partial IOTA Area Code to search the database for transactions, maximum 8 characters and end the code with AA pairs for wildcard matches.</p>
+                <p>Example queries could be NPAA or NPHTAA.</p>
                 <Form>
                     <Fieldset>
                         <label>IOTA Area Code</label>
@@ -57,7 +58,7 @@ class Query extends Component<any, QueryState> {
                             type="text"
                             placeholder="Please enter the iota area code"
                             value={this.state.userIotaAreaCode}
-                            onChange={(e) => this.setState({ userIotaAreaCode: e.target.value }, () => this.validateIotaAreaCode())}
+                            onChange={(e) => this.setState({ userIotaAreaCode: e.target.value.toUpperCase() }, () => this.validateIotaAreaCode())}
                         />
                         <Button disabled={!this.state.userIotaAreaCodeIsValid} onClick={() => this.query()}>Query</Button>
                     </Fieldset>
@@ -75,70 +76,15 @@ class Query extends Component<any, QueryState> {
                         </React.Fragment>
                     )}
                 </Form>
+                <hr/>
+                <p>For further information on how this code is implemeted visit the GitHub Repository for
+                    the main library [<a href="https://github.com/iotaledger/iota-area-codes" target="_blank" rel="noreferrer noopener">@iota/area-codes</a>]
+                    , the web app [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/client" target="_blank" rel="noreferrer noopener">Client</a>]
+                    or the server [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/queryServer" target="_blank" rel="noreferrer noopener">Query Server</a>]
+                </p>
             </React.Fragment>
         );
     }
-
-    // /**
-    //  * The google maps api was loaded capture the maps and map object.
-    //  * @param map The map object.
-    //  * @param maps The maps object.
-    //  */
-    // private apiLoaded(map: any, maps: any): void {
-    //     this._map = map;
-    //     this._maps = maps;
-    // }
-
-    // /**
-    //  * The map was clicked.
-    //  * @param event The click event.
-    //  */
-    // private mapClicked(event: ClickEventValue): void {
-    //     this.updateIac(IotaAreaCodes.encode(event.lat, event.lng));
-    // }
-
-    // /**
-    //  * Update based on iota area code.
-    //  * @param iac The area code.
-    //  */
-    // private updateIac(iac: string): void {
-    //     const area = IotaAreaCodes.decode(iac);
-
-    //     this.setState({
-    //         latitude: area.latitude,
-    //         longitude: area.longitude,
-    //         iotaAreaCode: iac,
-    //         openLocationCode: IotaAreaCodes.toOpenLocationCode(iac),
-    //         zoom: area.codePrecision === 2 ? 1 : area.codePrecision * 2
-    //     });
-
-    //     this.updateHighlight(area);
-    // }
-
-    // /**
-    //  * Update the highlight on the map.
-    //  * @param area The area to highlight.
-    //  */
-    // private updateHighlight(area: IotaAreaCodes.IacCodeArea): void {
-    //     if (this._highlight) {
-    //         this._highlight.setMap(undefined);
-    //     }
-
-    //     this._highlight = new this._maps.Rectangle({
-    //         strokeColor: "#FF0000",
-    //         strokeOpacity: 0.8,
-    //         strokeWeight: 2,
-    //         fillColor: "#FF0000",
-    //         fillOpacity: 0.35,
-    //         map: this._map,
-    //         bounds: {
-    //             south: area.latitudeLow,
-    //             north: area.latitudeHigh,
-    //             west: area.longitudeLow,
-    //             east: area.longitudeHigh
-    //         }
-    //     });
-    // }
 
     /**
      * Validate the iota area code using the library.

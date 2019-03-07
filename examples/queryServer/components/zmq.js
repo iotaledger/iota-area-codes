@@ -1,4 +1,4 @@
-const { extract } = require('iota-area-codes')
+const { extract } = require('@iota/area-codes')
 const { storeTransaction } = require('./db')
 
 let zmq = require('zeromq')

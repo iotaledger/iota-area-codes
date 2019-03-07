@@ -1,7 +1,7 @@
+import * as IotaAreaCodes from "@iota/area-codes";
 import { composeAPI, generateAddress } from "@iota/core";
 import { asTransactionObject } from "@iota/transaction-converter";
 import GoogleMapReact, { ClickEventValue } from "google-map-react";
-import * as IotaAreaCodes from "iota-area-codes";
 import { Button, ButtonContainer, Fieldset, Form, FormActions, FormStatus, Heading } from "iota-react-components";
 import React, { Component, ReactNode } from "react";
 import { ServiceFactory } from "../../factories/serviceFactory";
@@ -77,7 +77,7 @@ class Create extends Component<any, CreateState> {
             <React.Fragment>
                 <Heading level={1}>Create IAC Transaction</Heading>
                 <p>Select an area on the map and create a transaction tagged with that location.
-                    Once the transaction is confirmed the server should identify it in the ZMQ feed and return it to the client.</p>
+                    Once the transaction is propagated from the attaching node to the ZMQ node feed it will appear in the Transactions list.</p>
                 <Form>
                     <div className="map-container">
                         <GoogleMapReact
@@ -114,22 +114,27 @@ class Create extends Component<any, CreateState> {
                     <FormStatus message={this.state.status} isBusy={this.state.isBusy} isError={this.state.isErrored} />
                     {this.state.transactionHash && (
                         <React.Fragment>
-                            <p>You can view the transaction on the Tangle here, it should also appear in the Transactions list when confirmed and detected by the ZMQ Server.</p>
+                            <p>You can view the transaction on the Tangle by clicking the button below, it will also appear in the Transactions list when it has propagated to the ZMQ Node.</p>
                             <ButtonContainer>
                                 <Button color="secondary" long={true} onClick={() => this._tangleExplorerService.transaction(this.state.transactionHash)}>{this.state.transactionHash}</Button>
                             </ButtonContainer>
                         </React.Fragment>
                     )}
                     <hr />
-                    <Heading level={1}>Transactions (ZMQ Feed from API)</Heading>
+                    <Heading level={1}>Transactions (ZMQ Feed)</Heading>
                     {this.state.iacTransactions.length === 0 && (
                         <p>There are currently no IAC transactions to show.</p>
                     )}
                     {this.state.iacTransactions.length > 0 && this.state.iacTransactions.map(item => (
                         <IACTransactionCard key={item.transaction.hash} iotaAreaCode={item.iac} transactionHash={item.transaction.hash} transaction={item.transaction} />
                     ))}
-
                 </Form>
+                <hr/>
+                <p>For further information on how this code is implemeted visit the GitHub Repository for
+                    the main library [<a href="https://github.com/iotaledger/iota-area-codes" target="_blank" rel="noreferrer noopener">@iota/area-codes</a>]
+                    , the web app [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/client" target="_blank" rel="noreferrer noopener">Client</a>]
+                    or the ZMQ api [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/api" target="_blank" rel="noreferrer noopener">ZMQ API</a>]
+                </p>
             </React.Fragment>
         );
     }

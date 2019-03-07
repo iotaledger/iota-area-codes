@@ -11,19 +11,19 @@ For a more detailed explanation of IACs, please read [./docs/iota-area-codes.md]
 Install this package using the following commands:
 
 ```shell
-npm install iotaledger/iota-area-codes
+npm install @iota/area-codes
 ```
 
 or
 
 ```shell
-yarn add iotaledger/iota-area-codes
+yarn add @iota/area-codes
 ```
 
 ## Example Usage
 
 ```js
-const iotaAreaCodes = require('iota-area-codes');
+const iotaAreaCodes = require('@iota/area-codes');
 
 const iac = iotaAreaCodes.encode(52.529562, 13.413047);
 console.log("IOTA Area Code", iac);

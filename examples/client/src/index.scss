@@ -31,4 +31,9 @@
       padding: 20px 16px 40px 16px;
     }
   }
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

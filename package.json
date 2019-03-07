@@ -1,5 +1,5 @@
 {
-    "name": "iota-area-codes",
+    "name": "@iota/area-codes",
     "description": "IOTA Area Codes (IAC) JavaScript",
     "version": "0.1.0",
     "keywords": [

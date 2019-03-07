@@ -1,4 +1,4 @@
-import { extract } from "iota-area-codes";
+import { extract } from "@iota/area-codes";
 import zmq from "zeromq";
 
 /**

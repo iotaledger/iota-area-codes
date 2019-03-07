@@ -1,5 +1,5 @@
+import * as IotaAreaCodes from "@iota/area-codes";
 import GoogleMapReact, { ClickEventValue } from "google-map-react";
-import * as IotaAreaCodes from "iota-area-codes";
 import { Button, Fieldset, Form, FormActions, Heading } from "iota-react-components";
 import React, { Component, ReactNode } from "react";
 import { ServiceFactory } from "../../factories/serviceFactory";
@@ -116,6 +116,12 @@ class Conversion extends Component<any, ConversionState> {
                         <Button onClick={() => this.reset()}>Reset</Button>
                     </FormActions>
                 </Form>
+                <hr/>
+                <p>For further information on how this code is implemeted visit the GitHub Repository for
+                    the main library [<a href="https://github.com/iotaledger/iota-area-codes" target="_blank" rel="noreferrer noopener">@iota/area-codes</a>]
+
+                    or for this web app [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/client" target="_blank" rel="noreferrer noopener">Client</a>]
+                </p>
             </React.Fragment>
         );
     }

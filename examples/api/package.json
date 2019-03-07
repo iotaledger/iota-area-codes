@@ -4,8 +4,8 @@
     "version": "1.0.0",
     "author": "Martyn Janes <martyn.janes@iota.org>",
     "dependencies": {
+        "@iota/area-codes": "github:iotaledger/iota-area-codes",
         "express": "^4.16.4",
-        "iota-area-codes": "github:iotaledger/iota-area-codes",
         "socket.io": "^2.2.0",
         "zeromq": "^5.1.0"
     },

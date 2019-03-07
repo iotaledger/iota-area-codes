@@ -11,6 +11,7 @@ import { TangleExplorerService } from "../services/tangleExplorerService";
 import { AppState } from "./AppState";
 import Conversion from "./routes/Conversion";
 import Create from "./routes/Create";
+import Introduction from "./routes/Introduction";
 import Query from "./routes/Query";
 
 /**
@@ -81,7 +82,8 @@ class App extends Component<RouteComponentProps, AppState> {
                     hamburgerMediaQuery="tablet-up-hidden"
                 />
                 <nav className="tablet-down-hidden">
-                    <Link className="link" to="/">Conversion</Link>
+                    <Link className="link" to="/">Introduction</Link>
+                    <Link className="link" to="/conversion">Conversion</Link>
                     <Link className="link" to="/create">Create</Link>
                     <Link className="link" to="/query">Query</Link>
                 </nav>
@@ -97,8 +99,12 @@ class App extends Component<RouteComponentProps, AppState> {
                                 {
                                     items: [
                                         {
-                                            name: "Conversion",
+                                            name: "Introduction",
                                             link: "/"
+                                        },
+                                        {
+                                            name: "Conversion",
+                                            link: "/conversion"
                                         },
                                         {
                                             name: "Create",
@@ -121,7 +127,8 @@ class App extends Component<RouteComponentProps, AppState> {
                         <StatusMessage status={this.state.status} color={this.state.statusColor} isBusy={this.state.isBusy} />
                         {!this.state.status && (
                             <Switch>
-                                <Route exact={true} path="/" component={() => (<Conversion hash={Date.now()} />)} />
+                                <Route exact={true} path="/" component={() => (<Introduction hash={Date.now()} />)} />
+                                <Route exact={true} path="/conversion" component={() => (<Conversion hash={Date.now()} />)} />
                                 <Route exact={true} path="/create" component={() => (<Create hash={Date.now()} />)} />
                                 <Route exact={true} path="/query" component={() => (<Query hash={Date.now()} />)} />
                             </Switch>

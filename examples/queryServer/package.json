@@ -8,9 +8,9 @@
     "start": "micro"
   },
   "dependencies": {
+    "@iota/area-codes": "github:iotaledger/iota-area-codes",
     "cassandra-driver": "^4.0.0",
     "dotenv": "^6.2.0",
-    "iota-area-codes": "github:iotaledger/iota-area-codes",
     "micro": "^9.3.3",
     "micro-cors": "^0.1.1",
     "zeromq": "^5.1.0"
