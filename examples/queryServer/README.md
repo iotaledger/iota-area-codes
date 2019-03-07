@@ -1,6 +1,8 @@
 # IAC Query Server
 
-The IAC server provides the ability for clients to query the IAC codes of transactions in the IOTA Ledger.
+The IAC server stores transactions with IAC codes so they can be queried back at a later date using wilcard searches.
+
+## Functions
 
 The IAC server has four main functions:
 
@@ -94,4 +96,3 @@ localhost:3000/initDatabase
   - [x] Destroy database
   - [x] Fetch all transactions
   - [x] Query using partial IAC codes
-- [ ]
