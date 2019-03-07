@@ -1,10 +1,8 @@
 # IOTA Area Codes (IAC)
 
-This package contains a JavaScript implementation of IOTA Area Codes (IAC) as proposed here <https://github.com/iota-community/iota-area-codes> by Lewis Freiberg.
+IACs are a method for tagging IOTA transactions with a geo-location, which allows them to be fetched based on their location. IACs are currently based on [Open Location Codes](https://en.wikipedia.org/wiki/Open_Location_Code), also known as Plus codes, which were created by Google Zurich in 2014. For a more detailed explanation of IACs, please read [./docs/iota-area-codes.md](./docs/iota-area-codes.md)
 
-IACs are a method for encoding a geo-location as Trytes for use in IOTA transactions, it is based on <https://en.wikipedia.org/wiki/Open_Location_Code>
-
-For a more detailed explanation of IACs, please read [./docs/iota-area-codes.md](./docs/iota-area-codes.md)
+This package contains a JavaScript implementation of IOTA Area Codes (IAC) as proposed [here](https://github.com/iota-community/iota-area-codes) by Lewis Freiberg.
 
 ## Installing
 
@@ -71,10 +69,15 @@ extracted NPHTQORL9XKP
 
 ## API Reference
 
-See [./docs/api.md](./docs/api.md)
+See the API reference for the Javascript implementation [here](./docs/api.md).
 
-## Demonstration
+## Examples
 
-A Demonstration application using this library can be found in [./examples/](./examples/README.md)
+To see the IACs in actions a demonstration application using this library can be found in the [./examples/](./examples/README.md) folder. This example is deployed to <https://iota-poc-area-codes.dag.sh> if you'd like to simply test it. 
 
-Which is deployed to <https://iota-poc-area-codes.dag.sh>
+## License 
+
+MIT License - Copyright (c) 2019 IOTA Stiftung
+
+
+
