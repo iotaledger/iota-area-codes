@@ -1,17 +1,13 @@
-import classnames from 'classnames'
 import GoogleMapReact from 'google-map-react'
 import * as IotaAreaCodes from '@iota/area-codes'
-import { Button } from 'iota-react-components'
 import React, { Component, ReactNode } from 'react'
 import { ServiceFactory } from '../../factories/serviceFactory'
-import { TrytesHelper } from '../../helpers/trytesHelper'
 import { IConfiguration } from '../../models/config/IConfiguration'
 import { ConfigurationService } from '../../services/configurationService'
 import { TangleExplorerService } from '../../services/tangleExplorerService'
 import './IACMap.scss'
 import { IACMapProps } from './IACMapProps'
 import { IACMapState } from './IACMapState'
-import { map } from 'bluebird'
 
 /**
  * Component to display an IAC transaction.
