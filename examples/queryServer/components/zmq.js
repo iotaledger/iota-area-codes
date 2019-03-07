@@ -20,7 +20,7 @@ sock.on('message', async msg => {
   if (iac) {
     console.log('IAC:', iac)
     console.log('Tx Hash:', tx_id)
-    await storeTransaction({ tx_id, iac })
+    await storeTransaction([{ tx_id, iac }])
   }
 })
 
