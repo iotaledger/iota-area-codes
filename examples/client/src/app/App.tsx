@@ -87,7 +87,7 @@ class App extends Component<RouteComponentProps, AppState> {
                     <Link className="link" to="/conversion">Conversion</Link>
                     <Link className="link" to="/create">Create</Link>
                     <Link className="link" to="/query">Query</Link>
-                    <Link className="link" to="/live">Live</Link>
+                    <Link className="link" to="/live">Live Map</Link>
                 </nav>
                 <SideMenu
                     isMenuOpen={this.state.isSideMenuOpen}
