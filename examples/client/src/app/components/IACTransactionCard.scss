@@ -1,87 +1,69 @@
 // sass-lint:disable no-duplicate-properties
 
 .iac-transaction-card {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+
+  @media (max-width: 514px) {
+    flex-direction: column;
+  }
+
+  .iac-transaction--message {
+    flex: 1 0 50%;
     margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid var(--light-grey);
-    border-radius: 5px;
-  
+    font-size: 20px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .iac-transaction--iac {
+    flex: 1 0 50%;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .iac-transaction--actions {
+    display: flex;
+    flex: 1 0 50%;
+    align-items: flex-start;
+    justify-content: flex-start;
+
     @media (max-width: 514px) {
-      flex-direction: column;
-    }
-  
-    .iac-transaction--message {
-      flex: 1 0 50%;
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-size: 1.25rem;
-      font-weight: bold;
-      text-align: right;
-    }
-
-    .iac-transaction--iac {
-      flex: 1 0 50%;
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-
-    .iac-transaction--actions {
-      display: flex;
-      flex: 1 0 50%;
       align-items: flex-start;
       justify-content: flex-start;
-  
-      @media (max-width: 514px) {
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin-top: 20px;
-      }
-  
-      .button {
-        margin: 0;
-      }
-    }
-  
-    .iac-transaction--map-container {
-      width: 100%;
       margin-top: 20px;
-  
-      .iac-transaction--map {
-        height: 300px;
-        margin-top: 20px;
-        transition: 0.3s ease;
-        transition-property: height, border, opacity;
-        border: 1px solid var(--jade);
-        opacity: 1;
-  
-        &.iac-transaction--map__hidden {
-          height: 0;
-          border-color: transparent;
-          opacity: 0;
-        }
-  
-        .iac-transaction--map-marker {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 10px;
-          transform: translate(-50%, -50%);
-          border-radius: 5px;
-          background: var(--jade);
-          color: var(--white);
-          text-align: center;
-  
-          img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-          }
-        }
+    }
+
+    .button {
+      margin: 0;
+    }
+  }
+
+  .iac-transaction--map-container {
+    width: 100%;
+    margin-top: 20px;
+
+    .iac-transaction--map {
+      height: 300px;
+      margin-top: 20px;
+      transition: 0.3s ease;
+      transition-property: height, border, opacity;
+      border: 1px solid var(--jade);
+      opacity: 1;
+
+      &.iac-transaction--map__hidden {
+        height: 0;
+        border-color: transparent;
+        opacity: 0;
       }
     }
   }
+}

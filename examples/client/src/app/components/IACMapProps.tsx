@@ -2,7 +2,7 @@ export interface IACMapProps {
     /**
      * The Relevant Transactions.
      */
-    transactions: {
+    iacTransactions: {
         /**
          * The IOTA Area Code for the transaction.
          */

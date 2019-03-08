@@ -32,6 +32,25 @@ export interface CreateState {
     transactionHash?: string;
 
     /**
+     * The center for the map.
+     */
+    center: {
+        /**
+         * The latitude for the center.
+         */
+        lat: number;
+        /**
+         * The longitude for the center.
+         */
+        lng: number;
+    };
+
+    /**
+     * The zoom for the map.
+     */
+    zoom: number;
+
+    /**
      * IAC Transactions from the ZMQ Server.
      */
     iacTransactions: {

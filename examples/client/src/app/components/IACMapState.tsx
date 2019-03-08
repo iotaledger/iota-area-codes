@@ -2,15 +2,15 @@ export interface IACMapState {
     /**
      * The center for the map.
      */
-    mapCenter: {
+    center: {
         /**
          * The latitude for the center.
          */
-        latitude: number;
+        lat: number;
         /**
          * The longitude for the center.
          */
-        longitude: number;
+        lng: number;
     };
 
     /**

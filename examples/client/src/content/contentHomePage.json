@@ -40,6 +40,10 @@
                 {
                     "href": "/query",
                     "text": "Query"
+                },
+                {
+                    "href": "/live",
+                    "text": "Live Map"
                 }
             ]
         },

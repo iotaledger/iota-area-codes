@@ -12,6 +12,7 @@ import { AppState } from "./AppState";
 import Conversion from "./routes/Conversion";
 import Create from "./routes/Create";
 import Introduction from "./routes/Introduction";
+import Live from "./routes/Live";
 import Query from "./routes/Query";
 
 /**
@@ -86,6 +87,7 @@ class App extends Component<RouteComponentProps, AppState> {
                     <Link className="link" to="/conversion">Conversion</Link>
                     <Link className="link" to="/create">Create</Link>
                     <Link className="link" to="/query">Query</Link>
+                    <Link className="link" to="/live">Live</Link>
                 </nav>
                 <SideMenu
                     isMenuOpen={this.state.isSideMenuOpen}
@@ -113,6 +115,10 @@ class App extends Component<RouteComponentProps, AppState> {
                                         {
                                             name: "Query",
                                             link: "/query"
+                                        },
+                                        {
+                                            name: "Live",
+                                            link: "/live"
                                         }
                                     ]
                                 }
@@ -131,6 +137,7 @@ class App extends Component<RouteComponentProps, AppState> {
                                 <Route exact={true} path="/conversion" component={() => (<Conversion hash={Date.now()} />)} />
                                 <Route exact={true} path="/create" component={() => (<Create hash={Date.now()} />)} />
                                 <Route exact={true} path="/query" component={() => (<Query hash={Date.now()} />)} />
+                                <Route exact={true} path="/live" component={() => (<Live hash={Date.now()} />)} />
                             </Switch>
                         )}
                     </LayoutAppSingle>

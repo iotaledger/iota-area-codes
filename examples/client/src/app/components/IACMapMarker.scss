@@ -1,0 +1,15 @@
+.iac-map-marker {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+}

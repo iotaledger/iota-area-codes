@@ -64,7 +64,12 @@ class Create extends Component<any, CreateState> {
             status: "",
             iotaAreaCode: "",
             txMessage: "",
-            iacTransactions: []
+            iacTransactions: [],
+            center: {
+                lat: 52.529562,
+                lng: 13.413047
+            },
+            zoom: 0
         };
     }
 
@@ -82,16 +87,29 @@ class Create extends Component<any, CreateState> {
                     <div className="map-container">
                         <GoogleMapReact
                             bootstrapURLKeys={{ key: this._configuration.googleMapsKey }}
-                            defaultCenter={{
-                                lat: 52.529562,
-                                lng: 13.413047
-                            }}
-                            defaultZoom={19}
+                            defaultZoom={0}
+                            center={this.state.center}
+                            zoom={this.state.zoom}
+                            onChange={(e) => this.setState({ zoom: e.zoom, center: e.center })}
                             onClick={(e) => this.mapClicked(e)}
                             onGoogleApiLoaded={(e) => this.apiLoaded(e.map, e.maps)}
                             yesIWantToUseGoogleMapApiInternals={true}
                         />
                     </div>
+                    <Fieldset>
+                        <label>&nbsp;</label>
+                        <Button
+                            onClick={() => this.setState({
+                                center: {
+                                    lat: 52.529562,
+                                    lng: 13.413047
+                                },
+                                zoom: 0
+                            })}
+                        >
+                            Reset Map
+                        </Button>
+                    </Fieldset>
                     {this.state.iotaAreaCode && (
                         <Fieldset small={true}>
                             <label>IOTA Area Code</label>
@@ -129,13 +147,13 @@ class Create extends Component<any, CreateState> {
                         <IACTransactionCard key={item.transaction.hash} iotaAreaCode={item.iac} transactionHash={item.transaction.hash} transaction={item.transaction} />
                     ))}
                 </Form>
-                <hr/>
+                <hr />
                 <p>For further information on how this code is implemeted visit the GitHub Repository for
                     the main library [<a href="https://github.com/iotaledger/iota-area-codes" target="_blank" rel="noreferrer noopener">@iota/area-codes</a>]
                     , the web app [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/client" target="_blank" rel="noreferrer noopener">Client</a>]
                     or the ZMQ api [<a href="https://github.com/iotaledger/iota-area-codes/tree/master/examples/api" target="_blank" rel="noreferrer noopener">ZMQ API</a>]
                 </p>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 
@@ -151,6 +169,11 @@ class Create extends Component<any, CreateState> {
         const area = IotaAreaCodes.decode(iac);
 
         this.updateHighlight(area);
+
+        this.setState({
+            center: { lat: area.latitude, lng: area.longitude },
+            zoom: 19
+        });
     }
 
     /**

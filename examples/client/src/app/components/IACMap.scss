@@ -1,49 +1,12 @@
-.iac-map-marker {
-  color: white;
-  background: grey;
-  padding: 15px 10px;
-  display: inline-flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  transform: translate(-50%, -50%);
-}
-
-.iac-transaction--map-container {
+.iac-map--container {
   width: 100%;
   margin-top: 20px;
 
-  .iac-transaction--map {
-    height: 300px;
+  .iac-map {
+    height: 640px;
     margin-top: 20px;
     transition: 0.3s ease;
     transition-property: height, border, opacity;
     border: 1px solid var(--jade);
-    opacity: 1;
-
-    &.iac-transaction--map__hidden {
-      height: 0;
-      border-color: transparent;
-      opacity: 0;
-    }
-
-    .iac-transaction--map-marker {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-      transform: translate(-50%, -50%);
-      border-radius: 5px;
-      background: var(--jade);
-      color: var(--white);
-      text-align: center;
-
-      img {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-      }
-    }
   }
 }

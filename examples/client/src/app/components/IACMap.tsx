@@ -1,11 +1,12 @@
 import * as IotaAreaCodes from "@iota/area-codes";
 import GoogleMapReact from "google-map-react";
 import React, { Component, ReactNode } from "react";
+import markerBlue from "../../assets/marker-blue.png";
 import { ServiceFactory } from "../../factories/serviceFactory";
 import { IConfiguration } from "../../models/config/IConfiguration";
 import { ConfigurationService } from "../../services/configurationService";
-import { TangleExplorerService } from "../../services/tangleExplorerService";
 import "./IACMap.scss";
+import IACMapMarker from "./IACMapMarker";
 import { IACMapProps } from "./IACMapProps";
 import { IACMapState } from "./IACMapState";
 
@@ -17,11 +18,6 @@ class IACTransactionCard extends Component<IACMapProps, IACMapState> {
      * The configuration.
      */
     private readonly _configuration: IConfiguration;
-
-    /**
-     * The tangle explorer service.
-     */
-    private readonly _tangleExplorerService: TangleExplorerService;
 
     /**
      * The area code to display.
@@ -51,13 +47,12 @@ class IACTransactionCard extends Component<IACMapProps, IACMapState> {
         super(props);
 
         this._configuration = ServiceFactory.get<ConfigurationService<IConfiguration>>("configuration").get();
-        this._tangleExplorerService = ServiceFactory.get<TangleExplorerService>("tangleExplorer");
 
         this._area = IotaAreaCodes.decode(this.props.query);
 
         this.state = {
             zoom: this.zoom(this._area.codePrecision),
-            mapCenter: this._area
+            center: { lat: this._area.latitude, lng: this._area.longitude }
         };
     }
 
@@ -66,13 +61,13 @@ class IACTransactionCard extends Component<IACMapProps, IACMapState> {
      * @param prevProps The previous props.
      */
     public componentDidUpdate(prevProps: IACMapProps): void {
-        if (this.props.transactions !== prevProps.transactions) {
+        if (this.props.iacTransactions !== prevProps.iacTransactions) {
             this._area = IotaAreaCodes.decode(this.props.query);
 
             this.setState(
                 {
                     zoom: this.zoom(this._area.codePrecision),
-                    mapCenter: this._area
+                    center: { lat: this._area.latitude, lng: this._area.longitude }
                 },
                 () => this.createHighlight());
         }
@@ -84,36 +79,28 @@ class IACTransactionCard extends Component<IACMapProps, IACMapState> {
      */
     public render(): ReactNode {
         return (
-            <div className="iac-transaction-card">
-                <div className="iac-transaction--map-container">
-                    <div className="iac-transaction--map">
-                        <GoogleMapReact
-                            bootstrapURLKeys={{ key: this._configuration.googleMapsKey }}
-                            center={{
-                                lat: this.state.mapCenter.latitude,
-                                lng: this.state.mapCenter.longitude
-                            }}
-                            zoom={this.state.zoom}
-                            onGoogleApiLoaded={e => this.apiLoaded(e.map, e.maps)}
-                            yesIWantToUseGoogleMapApiInternals={true}
-                        >
-                            {this.props.transactions[0]
-                                ? this.props.transactions.map(tx => {
-                                    const location = IotaAreaCodes.decode(tx.iac);
-                                    return (
-                                        <this.Marker
-                                            key={tx.tx_id}
-                                            lat={location.latitude}
-                                            lng={location.longitude}
-                                            icon={
-                                                "http://maps.google.com/mapfiles/ms/icons/blue.png"
-                                            }
-                                        />
-                                    );
-                                })
-                                : null}
-                        </GoogleMapReact>
-                    </div>
+            <div className="iac-map--container">
+                <div className="iac-map">
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: this._configuration.googleMapsKey }}
+                        center={this.state.center}
+                        zoom={this.state.zoom}
+                        onGoogleApiLoaded={e => this.apiLoaded(e.map, e.maps)}
+                        yesIWantToUseGoogleMapApiInternals={true}
+                    >
+                        {this.props.iacTransactions && this.props.iacTransactions.map((tx, idx) => {
+                            const location = IotaAreaCodes.decode(tx.iac);
+                            return (
+                                <IACMapMarker
+                                    key={idx}
+                                    transactionHash={tx.tx_id}
+                                    lat={location.latitude}
+                                    lng={location.longitude}
+                                    icon={markerBlue}
+                                />
+                            );
+                        })}
+                    </GoogleMapReact>
                 </div>
             </div>
         );
@@ -172,28 +159,6 @@ class IACTransactionCard extends Component<IACMapProps, IACMapState> {
             }
         });
         this._highlight.setMap(this._map);
-    }
-
-    /**
-     * Create a marker for the map.
-     * @param props The props for the item.
-     * @returns The Marker component.
-     */
-    // tslint:disable-next-line:variable-name
-    private Marker = (props: any) => {
-        const url: any = this._tangleExplorerService.transaction(props.key);
-        return (
-            <a href={url}>
-                <img
-                    style={{
-                        display: "absolute",
-                        transform: "translate(-50%, -50%)"
-                    }}
-                    alt="marker"
-                    src={props.icon}
-                />
-            </a>
-        );
     }
 }
 

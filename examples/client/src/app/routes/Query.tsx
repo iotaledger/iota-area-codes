@@ -87,7 +87,7 @@ class Query extends Component<any, QueryState> {
                                 {this.state.iacTransactions.length > 0 && (
                                     <IACMap
                                         query={this.state.userIotaAreaCode}
-                                        transactions={this.state.iacTransactions}
+                                        iacTransactions={this.state.iacTransactions}
                                     />
                                 )}
                             </React.Fragment>
