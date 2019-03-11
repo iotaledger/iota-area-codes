@@ -47,7 +47,7 @@ console.log("isValid2", isValid2);
 const isValidPartial1 = iotaAreaCodes.isValidPartial('JAHAS');
 console.log("isValidPartial1", isValidPartial1);
 
-const isValidPartial2 = iotaAreaCodes.isValidParial('NPAAAAAA9');
+const isValidPartial2 = iotaAreaCodes.isValidPartial('NPAAAAAA9');
 console.log("isValidPartial2", isValidPartial2);
 
 const extracted = iotaAreaCodes.extract('NPHTQORL9XKP999999999');
