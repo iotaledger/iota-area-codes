@@ -44,6 +44,12 @@ console.log("isValid1", isValid1);
 const isValid2 = iotaAreaCodes.isValid('NPHTQORL9XKP');
 console.log("isValid2", isValid2);
 
+const isValidPartial1 = iotaAreaCodes.isValidPartial('JAHAS');
+console.log("isValidPartial1", isValidPartial1);
+
+const isValidPartial2 = iotaAreaCodes.isValidParial('NPAAAAAA9');
+console.log("isValidPartial2", isValidPartial2);
+
 const extracted = iotaAreaCodes.extract('NPHTQORL9XKP999999999');
 console.log("extracted", extracted);
 ```
@@ -53,17 +59,21 @@ Will output:
 ```shell
 IOTA Area Code NPHTQORL9XK
 IOTA Area Code High Precision NPHTQORL9XKP
-IOTA Code Area { latitude: 52.52956250000001,
+IOTA Code Area {
+  latitude: 52.52956250000001,
   longitude: 13.413046874999981,
   codePrecision: 11,
   latitudeLow: 52.529550000000015,
   latitudeHigh: 52.529575000000015,
   longitudeLow: 13.413031249999982,
-  longitudeHigh: 13.413062499999983 }
+  longitudeHigh: 13.413062499999983
+}
 Open Location Code 9F4MGCH7+R6F
 IOTA Area Code ZHRT9TT
 isValid1 false
 isValid2 true
+isValidPartial1 false
+isValidPartial2 true
 extracted NPHTQORL9XKP
 ```
 
