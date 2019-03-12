@@ -17,7 +17,7 @@ export class ApiClient {
     /**
      * Called when receiving an IAC event from api.
      */
-    private _iacCallback: (iac: string, trytes: string) => void;
+    private readonly _iacCallback: (iac: string, trytes: string) => void;
 
     /**
      * Create a new instance of ApiClient.

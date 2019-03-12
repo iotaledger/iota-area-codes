@@ -69,7 +69,7 @@ class Query extends Component<any, QueryState> {
                         />
                         <Button
                             disabled={!this.state.userIotaAreaCodeIsValid}
-                            onClick={() => this.query()}
+                            onClick={async () => this.query()}
                         >
                             Query
                         </Button>

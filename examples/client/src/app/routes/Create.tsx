@@ -91,7 +91,7 @@ class Create extends Component<any, CreateState> {
                             center={this.state.center}
                             zoom={this.state.zoom}
                             onChange={(e) => this.setState({ zoom: e.zoom, center: e.center })}
-                            onClick={(e) => this.mapClicked(e)}
+                            onClick={async (e) => this.mapClicked(e)}
                             onGoogleApiLoaded={(e) => this.apiLoaded(e.map, e.maps)}
                             yesIWantToUseGoogleMapApiInternals={true}
                         />

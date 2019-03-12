@@ -1,7 +1,7 @@
 import * as IotaAreaCodes from "@iota/area-codes";
 import { asTransactionObject } from "@iota/transaction-converter";
 import GoogleMapReact from "google-map-react";
-import { Heading, Button } from "iota-react-components";
+import { Button, Heading } from "iota-react-components";
 import React, { Component, ReactNode } from "react";
 import markerBlue from "../../assets/marker-blue.png";
 import { ServiceFactory } from "../../factories/serviceFactory";
@@ -44,7 +44,7 @@ class Live extends Component<any, LiveState> {
     /**
      * Map highlight polygon.
      */
-    private _highlight: any;
+    private readonly _highlight: any;
 
     /**
      * Create a new instance of Live.

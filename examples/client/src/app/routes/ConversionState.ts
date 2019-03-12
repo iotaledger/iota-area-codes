@@ -36,9 +36,34 @@ export interface ConversionState {
     iotaAreaCode?: string;
 
     /**
+     * The iota area code precision.
+     */
+    codePrecision?: number;
+
+    /**
+     * The clicked lontitude.
+     */
+    clickedLng?: number;
+
+    /**
+     * The clicked latitude.
+     */
+    clickedLat?: number;
+
+    /**
      * The open location code.
      */
     openLocationCode?: string;
+
+    /**
+     * The dimensions in degrees.
+     */
+    degrees?: string;
+
+    /**
+     * The dimensions in metres.
+     */
+    metres?: string;
 
     /**
      * The default zoom.

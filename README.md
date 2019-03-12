@@ -52,6 +52,18 @@ console.log("isValidPartial2", isValidPartial2);
 
 const extracted = iotaAreaCodes.extract('NPHTQORL9XKP999999999');
 console.log("extracted", extracted);
+
+const dimensions = iotaAreaCodes.getPrecisionDimensions(4);
+console.log("dimensions", dimensions);
+
+const increasePrecision1 = iotaAreaCodes.increasePrecision('NPHTQORL9');
+console.log("increasePrecision1", increasePrecision1);
+
+const decreasePrecision1 = iotaAreaCodes.decreasePrecision('NPHTQORL9');
+console.log("decreasePrecision1", decreasePrecision1);
+
+const setPrecision1 = iotaAreaCodes.setPrecision('NPHTQORL9', 4);
+console.log("setPrecision", setPrecision1);
 ```
 
 Will output:
@@ -75,6 +87,15 @@ isValid2 true
 isValidPartial1 false
 isValidPartial2 true
 extracted NPHTQORL9XKP
+dimensions {
+  blocksSizeDegrees: 1,
+  blocksSizeDegreesFormatted: "1°",
+  sizeMetres: 110000,
+  sizeMetresFormatted: "110km"
+}
+increasePrecision1 NPHTQORL9QP
+decreasePrecision1 NPHTQOAA9
+setPrecision NPHTAAAA9
 ```
 
 ## API Reference
@@ -83,11 +104,8 @@ See the API reference for the Javascript implementation [here](./docs/api.md).
 
 ## Examples
 
-To see the IACs in actions a demonstration application using this library can be found in the [./examples/](./examples/README.md) folder. This example is deployed to <https://iota-poc-area-codes.dag.sh> if you'd like to simply test it. 
+To see the IACs in actions a demonstration application using this library can be found in the [./examples/](./examples/README.md) folder. This example is deployed to <https://iota-poc-area-codes.dag.sh> if you'd like to simply test it.
 
-## License 
+## License
 
 MIT License - Copyright (c) 2019 IOTA Stiftung
-
-
-

@@ -73,7 +73,6 @@ class Introduction extends Component<any, any> {
                 <p>For those needing more precision, an additional, optional character can be used to improve accuracy to roughly 3 x 3 meters
                      – about the size of a small car.</p>
 
-
                 <table>
                     <thead>
                         <tr>
@@ -99,7 +98,7 @@ class Introduction extends Component<any, any> {
                         <tr>
                             <td>Approximately</td>
                             <td>2200 km</td>
-                            <td>110 k</td>
+                            <td>110 km</td>
                             <td>5.5 km</td>
                             <td>275 m</td>
                             <td>14 m</td>

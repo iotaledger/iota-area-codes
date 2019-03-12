@@ -112,11 +112,37 @@ class Conversion extends Component<any, ConversionState> {
                             <span>{this.state.openLocationCode}</span>
                         </Fieldset>
                     )}
+                    {this.state.degrees !== undefined && this.state.metres !== undefined && (
+                        <Fieldset small={true}>
+                            <label>Approximately</label>
+                            <span>{this.state.metres}</span>
+                            <label>Degrees</label>
+                            <span>{this.state.degrees}</span>
+                        </Fieldset>
+                    )}
                     <FormActions>
+                        <Button
+                            onClick={() => this.reducePrecision()}
+                            disabled={
+                                (this.state.iotaAreaCode ? false : true) ||
+                                (this.state.codePrecision && this.state.codePrecision > 2 ? false : true)
+                            }
+                        >
+                            Reduce Precision
+                        </Button>
+                        <Button
+                            onClick={() => this.increasePrecision()}
+                            disabled={
+                                (this.state.iotaAreaCode ? false : true) ||
+                                (this.state.codePrecision && this.state.codePrecision < 11 ? false : true)
+                            }
+                        >
+                            Increase Precision
+                        </Button>
                         <Button onClick={() => this.reset()}>Reset</Button>
                     </FormActions>
                 </Form>
-                <hr/>
+                <hr />
                 <p>For further information on how this code is implemeted visit the GitHub Repository for
                     the main library [<a href="https://github.com/iotaledger/iota-area-codes" target="_blank" rel="noreferrer noopener">@iota/area-codes</a>]
 
@@ -141,7 +167,17 @@ class Conversion extends Component<any, ConversionState> {
      * @param event The click event.
      */
     private mapClicked(event: ClickEventValue): void {
-        this.updateIac(IotaAreaCodes.encode(event.lat, event.lng));
+        this.setState(
+            {
+                clickedLat: event.lat,
+                clickedLng: event.lng
+            },
+            () => {
+                if (this.state.clickedLat && this.state.clickedLng) {
+                    this.updateIac(IotaAreaCodes.encode(this.state.clickedLat, this.state.clickedLng, IotaAreaCodes.CodePrecision.NORMAL));
+                }
+            }
+        );
     }
 
     /**
@@ -151,12 +187,19 @@ class Conversion extends Component<any, ConversionState> {
     private updateIac(iac: string): void {
         const area = IotaAreaCodes.decode(iac);
 
+        const dimensions = IotaAreaCodes.getPrecisionDimensions(area.codePrecision);
+
         this.setState({
             latitude: area.latitude,
             longitude: area.longitude,
+            clickedLat: this.state.clickedLat || area.latitude,
+            clickedLng: this.state.clickedLng || area.longitude,
             iotaAreaCode: iac,
             openLocationCode: IotaAreaCodes.toOpenLocationCode(iac),
-            zoom: area.codePrecision === 2 ? 1 : area.codePrecision * 2
+            zoom: area.codePrecision === 2 ? 1 : area.codePrecision * 2,
+            degrees: dimensions.blocksSizeDegreesFormatted || "Too small",
+            metres: dimensions.sizeMetresFormatted,
+            codePrecision: area.codePrecision
         });
 
         this.updateHighlight(area);
@@ -206,7 +249,13 @@ class Conversion extends Component<any, ConversionState> {
      */
     private iotaAreaCode(): void {
         if (this.state.userIotaAreaCode) {
-            this.updateIac(this.state.userIotaAreaCode);
+            this.setState(
+                {
+                    clickedLat: undefined,
+                    clickedLng: undefined
+                },
+                () => this.updateIac(this.state.userIotaAreaCode)
+            );
         }
     }
 
@@ -217,7 +266,14 @@ class Conversion extends Component<any, ConversionState> {
         let isValid = false;
         try {
             if (this.state.userOpenLocationCode) {
-                IotaAreaCodes.fromOpenLocationCode(this.state.userOpenLocationCode);
+                this.setState(
+                    {
+                        clickedLat: undefined,
+                        clickedLng: undefined
+                    },
+                    () => IotaAreaCodes.fromOpenLocationCode(this.state.userOpenLocationCode)
+                );
+
                 isValid = true;
             }
         } catch (err) {
@@ -235,6 +291,30 @@ class Conversion extends Component<any, ConversionState> {
     }
 
     /**
+     * Reduce the precision of the highlighted area.
+     */
+    private reducePrecision(): void {
+        if (this.state.clickedLat && this.state.clickedLng && this.state.codePrecision) {
+            this.updateIac(IotaAreaCodes.encode(
+                this.state.clickedLat,
+                this.state.clickedLng,
+                IotaAreaCodes.PRECISIONS[IotaAreaCodes.PRECISIONS.indexOf(this.state.codePrecision) - 1]));
+        }
+    }
+
+    /**
+     * Increase the precision of the highlighted area.
+     */
+    private increasePrecision(): void {
+        if (this.state.clickedLat && this.state.clickedLng && this.state.codePrecision) {
+            this.updateIac(IotaAreaCodes.encode(
+                this.state.clickedLat,
+                this.state.clickedLng,
+                IotaAreaCodes.PRECISIONS[IotaAreaCodes.PRECISIONS.indexOf(this.state.codePrecision) + 1]));
+        }
+    }
+
+    /**
      * Reset the map.
      */
     private reset(): void {
@@ -246,8 +326,13 @@ class Conversion extends Component<any, ConversionState> {
             latitude: undefined,
             longitude: undefined,
             iotaAreaCode: undefined,
+            codePrecision: undefined,
             openLocationCode: undefined,
-            zoom: undefined
+            zoom: undefined,
+            degrees: undefined,
+            metres: undefined,
+            clickedLat: undefined,
+            clickedLng: undefined
         });
 
         if (this._highlight) {
