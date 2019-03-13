@@ -122,13 +122,13 @@ class Conversion extends Component<any, ConversionState> {
                     )}
                     <FormActions>
                         <Button
-                            onClick={() => this.reducePrecision()}
+                            onClick={() => this.decreasePrecision()}
                             disabled={
                                 (this.state.iotaAreaCode ? false : true) ||
                                 (this.state.codePrecision && this.state.codePrecision > 2 ? false : true)
                             }
                         >
-                            Reduce Precision
+                            Decrease Precision
                         </Button>
                         <Button
                             onClick={() => this.increasePrecision()}
@@ -291,9 +291,9 @@ class Conversion extends Component<any, ConversionState> {
     }
 
     /**
-     * Reduce the precision of the highlighted area.
+     * Decrease the precision of the highlighted area.
      */
-    private reducePrecision(): void {
+    private decreasePrecision(): void {
         if (this.state.clickedLat && this.state.clickedLng && this.state.codePrecision) {
             this.updateIac(IotaAreaCodes.encode(
                 this.state.clickedLat,
