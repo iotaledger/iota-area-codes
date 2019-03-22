@@ -1,6 +1,6 @@
 # IOTA Area Codes (IAC)
 
-IACs are short, tryte encoded, location codes that can be used to tag and retrieve IOTA transactions related to specific locations. The IACs are typically 10 trytes long and will represent a 13.5m by 13.5m area, at the equator. However IACs can be 11 trytes long and represent a 2.8m by 3.5m grid.
+IACs are short, tryte encoded, location codes that can be used to tag and retrieve IOTA transactions related to specific locations. The IACs are typically 11 trytes long and will represent a 13.5m by 13.5m area, at the equator. However IACs can be 12 trytes long and represent a 2.8m by 3.5m grid.
 
 > For example: In IAC, you can represent the location of the IOTA Foundation's registered address as `NPHTQORL9XK`
 
@@ -24,7 +24,7 @@ A plus code in its full length is 10 characters long, with a plus sign before th
 
 Each code uses these two parts to locate a larger region and then find the precise location within that region.
 
-For those needing more precision, an additional, optional character can be used to improve accuracy to roughly 3 x 3 meters – about the size of a small car.
+For those needing more precision, an additional, optional character can be used to improve accuracy to roughly 3 x 3 meters – about the size of a small car. _The code length excludes the separator._
 
 | Code length   | 2       | 4      | 6          | 8            | 10                | 11    |
 | ------------- | ------- | ------ | ---------- | ------------ | ----------------- | ----- |
@@ -35,7 +35,7 @@ For those needing more precision, an additional, optional character can be used 
 
 When publishing information on IOTA there is no way to easily identify transactions that relate to a geographic areas. These transactions could contain localised service advertisements, sensor information or any number of other data formats.
 
-In order to find transactions related to an area you'd have to register your transactions with a centralised service, like a data marketplace, that collects locations to store and serve it to consumers. By using IACs in the first 11 trytes of the 27 tryte `tag` field in an IOTA transaction, we can localise an IOTA transaction to a 2.8m by 3.5m area. This allows for someone to find a transaction related to a small area, however the **real value** of this system comes from the ability to query large swaths of land for related transactions.
+In order to find transactions related to an area you'd have to register your transactions with a centralised service, like a data marketplace, that collects locations to store and serve it to consumers. By using IACs in the first 12 trytes of the 27 tryte `tag` field in an IOTA transaction, we can localise an IOTA transaction to a 2.8m by 3.5m area. This allows for someone to find a transaction related to a small area, however the **real value** of this system comes from the ability to query large swaths of land for related transactions.
 
 ## Querying large areas
 
