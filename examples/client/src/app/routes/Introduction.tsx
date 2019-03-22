@@ -81,6 +81,7 @@ class Introduction extends Component<any, any> {
                             <th>4</th>
                             <th>6</th>
                             <th>8</th>
+                            <th>+</th>
                             <th>10</th>
                             <th>11</th>
                         </tr>
@@ -92,6 +93,7 @@ class Introduction extends Component<any, any> {
                             <td>1°</td>
                             <td>0.05° (3′)</td>
                             <td>0.0025° (9″)</td>
+                            <td>&nbsp;</td>
                             <td>0.000125° (0.45″)</td>
                             <td>&nbsp;</td>
                         </tr>
@@ -101,6 +103,7 @@ class Introduction extends Component<any, any> {
                             <td>110 km</td>
                             <td>5.5 km</td>
                             <td>275 m</td>
+                            <td>&nbsp;</td>
                             <td>14 m</td>
                             <td>3.5 m</td>
                         </tr>

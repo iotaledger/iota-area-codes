@@ -26,10 +26,10 @@ Each code uses these two parts to locate a larger region and then find the preci
 
 For those needing more precision, an additional, optional character can be used to improve accuracy to roughly 3 x 3 meters – about the size of a small car. _The code length excludes the separator._
 
-| Code length   | 2       | 4      | 6          | 8            | 10                | 11    |
-| ------------- | ------- | ------ | ---------- | ------------ | ----------------- | ----- |
-| Block size    | 20°     | 1°     | 0.05° (3′) | 0.0025° (9″) | 0.000125° (0.45″) |       |
-| Approximately | 2200 km | 110 km | 5.5 km     | 275 m        | 14 m              | 3.5 m |
+| Code length   | 2       | 4      | 6          | 8            | + | 10                | 11    |
+| ------------- | ------- | ------ | ---------- | ------------ | - | ----------------- | ----- |
+| Block size    | 20°     | 1°     | 0.05° (3′) | 0.0025° (9″) |   | 0.000125° (0.45″) |       |
+| Approximately | 2200 km | 110 km | 5.5 km     | 275 m        |   | 14 m              | 3.5 m |
 
 ## Why would we want this
 
