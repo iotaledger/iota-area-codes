@@ -7,7 +7,7 @@ yarn-debug.log*
 yarn-error.log*
 .env
 build
-dist
+/examples/api/dist
 /examples/api/src/data/config.dev.json
 /examples/api/src/data/config.local.json
 /examples/api/src/data/config.staging.json
