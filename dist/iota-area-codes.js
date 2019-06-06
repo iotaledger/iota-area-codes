@@ -22,7 +22,7 @@
     }());
 
     function unwrapExports (x) {
-    	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
+    	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
     }
 
     function createCommonjsModule(fn, module) {
@@ -869,19 +869,19 @@
     }
 
     exports.CodePrecision = CodePrecision;
-    exports.encode = encode;
-    exports.decode = decode;
-    exports.fromOpenLocationCode = fromOpenLocationCode;
-    exports.toOpenLocationCode = toOpenLocationCode;
     exports.PRECISIONS = PRECISIONS;
+    exports.decode = decode;
     exports.decreasePrecision = decreasePrecision;
-    exports.increasePrecision = increasePrecision;
-    exports.setPrecision = setPrecision;
-    exports.internalSetPrecision = internalSetPrecision;
-    exports.getPrecisionDimensions = getPrecisionDimensions;
+    exports.encode = encode;
     exports.extract = extract;
+    exports.fromOpenLocationCode = fromOpenLocationCode;
+    exports.getPrecisionDimensions = getPrecisionDimensions;
+    exports.increasePrecision = increasePrecision;
+    exports.internalSetPrecision = internalSetPrecision;
     exports.isValid = isValid;
     exports.isValidPartial = isValidPartial;
+    exports.setPrecision = setPrecision;
+    exports.toOpenLocationCode = toOpenLocationCode;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
