@@ -263,22 +263,21 @@ class Conversion extends Component<any, ConversionState> {
      * Validate the open location code using the library.
      */
     private validateOpenLocationCode(): void {
-        let isValid = false;
-        try {
-            if (this.state.userOpenLocationCode) {
-                this.setState(
-                    {
-                        clickedLat: undefined,
-                        clickedLng: undefined
-                    },
-                    () => IotaAreaCodes.fromOpenLocationCode(this.state.userOpenLocationCode)
-                );
-
-                isValid = true;
-            }
-        } catch (err) {
-        }
-        this.setState({ userOpenLocationCodeIsValid: isValid });
+        this.setState(
+            {
+                userOpenLocationCodeIsValid: false,
+                clickedLat: undefined,
+                clickedLng: undefined
+            },
+            () => {
+                if (this.state.userOpenLocationCode) {
+                    try {
+                        IotaAreaCodes.fromOpenLocationCode(this.state.userOpenLocationCode);
+                        this.setState({ userOpenLocationCodeIsValid: true });
+                    } catch (err) {
+                    }
+                }
+            });
     }
 
     /**
