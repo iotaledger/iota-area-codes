@@ -644,7 +644,7 @@
         var codeIsValid = re.test(iotaAreaCode);
         if (codeIsValid) {
             // Now validate using OLC validation
-            codeIsValid = OpenLocationCode.isValid(iacToOlcInternal(iotaAreaCode));
+            codeIsValid = OpenLocationCode.isFull(iacToOlcInternal(iotaAreaCode));
         }
         return codeIsValid;
     }

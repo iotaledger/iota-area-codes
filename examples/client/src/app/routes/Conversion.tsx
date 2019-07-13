@@ -272,8 +272,8 @@ class Conversion extends Component<any, ConversionState> {
             () => {
                 if (this.state.userOpenLocationCode) {
                     try {
-                        IotaAreaCodes.fromOpenLocationCode(this.state.userOpenLocationCode);
-                        this.setState({ userOpenLocationCodeIsValid: true });
+                        const iac = IotaAreaCodes.fromOpenLocationCode(this.state.userOpenLocationCode);
+                        this.setState({ userOpenLocationCodeIsValid: IotaAreaCodes.isValid(iac) });
                     } catch (err) {
                     }
                 }
