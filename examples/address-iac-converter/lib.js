@@ -5,7 +5,7 @@ const apiKey = 'xxxxxxxxxxxxxxxxxxx'// please generate it from Google Cloud
 
 async function iacToAddress(iac) {
   //iac to lat long
-  const locObj = iotaAreaCodes.decode('NPHTQORL9XKP');
+  const locObj = iotaAreaCodes.decode(iac);
   // latitude longitude
   let res = null
   let address = null
