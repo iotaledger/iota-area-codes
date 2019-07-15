@@ -1,0 +1,16 @@
+{
+  "name": "iota-area-code",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@iota/area-codes": "^0.1.0",
+    "axios": "^0.19.0",
+    "express": "^4.17.1"
+  }
+}
