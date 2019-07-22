@@ -1,5 +1,5 @@
 import { IacCodeArea } from "./iacCodeArea";
-import { IacDimensions } from "./IacDimensions";
+import { IacDimensions } from "./iacDimensions";
 /**
  * All the available precisions.
  */
