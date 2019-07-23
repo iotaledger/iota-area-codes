@@ -29,6 +29,9 @@
 <dt><a href="#toOpenLocationCode">toOpenLocationCode(iotaAreaCode)</a> ⇒</dt>
 <dd><p>Convert the IOTA Area Code to Open Location Code.</p>
 </dd>
+<dt><a href="#padPartial">padPartial(iotaAreaCode)</a> ⇒</dt>
+<dd><p>Pad a partial IAC to the minimum full.</p>
+</dd>
 <dt><a href="#extract">extract(trytes)</a> ⇒</dt>
 <dd><p>Extract an IOTA Area Code from trytes.</p>
 </dd>
@@ -130,6 +133,18 @@ Convert the IOTA Area Code to Open Location Code.
 | Param | Description |
 | --- | --- |
 | iotaAreaCode | The IOTA Area Code to convert. |
+
+<a name="padPartial"></a>
+
+## padPartial(iotaAreaCode) ⇒
+Pad a partial IAC to the minimum full.
+
+**Kind**: global function  
+**Returns**: The padded code.  
+
+| Param | Description |
+| --- | --- |
+| iotaAreaCode | The area code to pad. |
 
 <a name="extract"></a>
 

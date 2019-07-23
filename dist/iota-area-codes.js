@@ -695,7 +695,7 @@
      * @returns The location object.
      */
     function decode(iotaAreaCode) {
-        var olc = OpenLocationCode.decode(toOpenLocationCode(iotaAreaCode));
+        var olc = OpenLocationCode.decode(toOpenLocationCode(padPartial(iotaAreaCode)));
         return {
             latitude: olc.latitudeCenter,
             longitude: olc.longitudeCenter,
@@ -732,6 +732,21 @@
             throw new Error("The iotaAreaCode is not valid");
         }
         return iacToOlcInternal(iotaAreaCode);
+    }
+    /**
+     * Pad a partial IAC to the minimum full.
+     * @param iotaAreaCode The area code to pad.
+     * @returns The padded code.
+     */
+    function padPartial(iotaAreaCode) {
+        var padded = iotaAreaCode;
+        if (padded.length < 8) {
+            padded = padded + "A".repeat(8 - padded.length);
+        }
+        if (padded.length < 9) {
+            padded = padded + "9";
+        }
+        return padded;
     }
 
     /**
@@ -880,6 +895,7 @@
     exports.internalSetPrecision = internalSetPrecision;
     exports.isValid = isValid;
     exports.isValidPartial = isValidPartial;
+    exports.padPartial = padPartial;
     exports.setPrecision = setPrecision;
     exports.toOpenLocationCode = toOpenLocationCode;
 

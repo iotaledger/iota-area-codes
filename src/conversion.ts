@@ -26,7 +26,7 @@ export function encode(latitude: number, longitude: number, precision: number = 
  * @returns The location object.
  */
 export function decode(iotaAreaCode: string): IacCodeArea {
-    const olc = OpenLocationCode.decode(toOpenLocationCode(iotaAreaCode));
+    const olc = OpenLocationCode.decode(toOpenLocationCode(padPartial(iotaAreaCode)));
     return {
         latitude: olc.latitudeCenter,
         longitude: olc.longitudeCenter,
@@ -68,4 +68,20 @@ export function toOpenLocationCode(iotaAreaCode: string): string {
     }
 
     return iacToOlcInternal(iotaAreaCode);
+}
+
+/**
+ * Pad a partial IAC to the minimum full.
+ * @param iotaAreaCode The area code to pad.
+ * @returns The padded code.
+ */
+export function padPartial(iotaAreaCode: string): string {
+    let padded = iotaAreaCode;
+    if (padded.length < 8) {
+        padded = padded + "A".repeat(8 - padded.length);
+    }
+    if (padded.length < 9) {
+        padded = `${padded}9`;
+    }
+    return padded;
 }

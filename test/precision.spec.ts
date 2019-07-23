@@ -24,12 +24,6 @@ test("getPrecisionDimensions() can get dimensions", () => {
     }
 });
 
-test("decreasePrecision() can fail on invalid area code", () => {
-    expect(() => {
-        decreasePrecision("NP");
-    }).toThrowError(/is not valid/);
-});
-
 test("decreasePrecision() can fail on min precision", () => {
     expect(() => {
         decreasePrecision("NPAAAAAA9");
@@ -48,12 +42,6 @@ test("decreasePrecision() can reduce precision", () => {
     for (let i = 0; i < precisions.length; i++) {
         expect(decreasePrecision(precisions[i].areaCode)).toBe(precisions[i].reduced);
     }
-});
-
-test("increasePrecision() can fail on invalid area code", () => {
-    expect(() => {
-        increasePrecision("NP");
-    }).toThrowError(/is not valid/);
 });
 
 test("increasePrecision() can fail on max precision", () => {

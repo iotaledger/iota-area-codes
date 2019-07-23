@@ -25,3 +25,9 @@ export declare function fromOpenLocationCode(openLocationCode: string): string;
  * @returns The Open Location Code.
  */
 export declare function toOpenLocationCode(iotaAreaCode: string): string;
+/**
+ * Pad a partial IAC to the minimum full.
+ * @param iotaAreaCode The area code to pad.
+ * @returns The padded code.
+ */
+export declare function padPartial(iotaAreaCode: string): string;
