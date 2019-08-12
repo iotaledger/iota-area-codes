@@ -6,12 +6,13 @@ import { ServiceFactory } from "../../factories/serviceFactory";
 import { IConfiguration } from "../../models/config/IConfiguration";
 import { ConfigurationService } from "../../services/configurationService";
 import "./Conversion.scss";
+import { ConversionProps } from "./ConversionProps";
 import { ConversionState } from "./ConversionState";
 
 /**
  * Component which will show conversions with IACs.
  */
-class Conversion extends Component<any, ConversionState> {
+class Conversion extends Component<ConversionProps, ConversionState> {
     /**
      * The configuration.
      */
@@ -36,7 +37,7 @@ class Conversion extends Component<any, ConversionState> {
      * Create a new instance of Conversion.
      * @param props The props.
      */
-    constructor(props: any) {
+    constructor(props: ConversionProps) {
         super(props);
 
         this._configuration = ServiceFactory.get<ConfigurationService<IConfiguration>>("configuration").get();
@@ -160,6 +161,15 @@ class Conversion extends Component<any, ConversionState> {
     private apiLoaded(map: any, maps: any): void {
         this._map = map;
         this._maps = maps;
+
+        if (this.props.match.params.iac) {
+            this.setState(
+                {
+                    userIotaAreaCode: this.props.match.params.iac
+                },
+                () => this.iotaAreaCode());
+        }
+
     }
 
     /**

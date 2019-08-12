@@ -10,6 +10,7 @@ import { ConfigurationService } from "../services/configurationService";
 import { TangleExplorerService } from "../services/tangleExplorerService";
 import { AppState } from "./AppState";
 import Conversion from "./routes/Conversion";
+import { ConversionProps } from "./routes/ConversionProps";
 import Create from "./routes/Create";
 import Introduction from "./routes/Introduction";
 import Live from "./routes/Live";
@@ -134,7 +135,7 @@ class App extends Component<RouteComponentProps, AppState> {
                         {!this.state.status && (
                             <Switch>
                                 <Route exact={true} path="/" component={() => (<Introduction hash={Date.now()} />)} />
-                                <Route exact={true} path="/conversion" component={() => (<Conversion hash={Date.now()} />)} />
+                                <Route exact={true} path="/conversion/:iac?" component={(p: ConversionProps) => (<Conversion {...p} />)} />
                                 <Route exact={true} path="/create" component={() => (<Create hash={Date.now()} />)} />
                                 <Route exact={true} path="/query" component={() => (<Query hash={Date.now()} />)} />
                                 <Route exact={true} path="/live" component={() => (<Live hash={Date.now()} />)} />
