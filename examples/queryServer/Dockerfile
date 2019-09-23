@@ -20,7 +20,7 @@ RUN npm install
 # Remove all the node_modules so the docker image doesn't exceeds max size
 RUN apk del git python make g++
 
-EXPOSE 3000:3000
+EXPOSE 3000
 
 # Serve the prod build from the build folder
 CMD ["npm", "run", "start"]
