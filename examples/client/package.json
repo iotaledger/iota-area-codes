@@ -6,7 +6,7 @@
     "license": "MIT",
     "dependencies": {
         "@iota/area-codes": "github:iotaledger/iota-area-codes",
-        "@iota/core": "^1.0.0-beta.11",
+        "@iota/core": "^1.0.0-beta.29",
         "axios": "^0.19.0",
         "babel-jest": "^24.8.0",
         "classnames": "^2.2.6",
@@ -16,7 +16,7 @@
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-router-dom": "^4.3.1",
-        "react-scripts": "^3.0.1",
+        "react-scripts": "^3.4.1",
         "socket.io-client": "^2.2.0"
     },
     "engines": {
@@ -46,7 +46,7 @@
         "@types/react-router-dom": "^4.3.3",
         "@types/socket.io-client": "^1.4.32",
         "cross-env": "^5.2.0",
-        "node-sass": "^4.12.0",
+        "node-sass": "^4.13.1",
         "sass-lint": "^1.13.1",
         "tslint": "^5.17.0",
         "tslint-eslint-rules": "^5.4.0",

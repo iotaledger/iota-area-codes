@@ -43,13 +43,13 @@ test("encodeIac() fails when previcion too short", () => {
 
 test("decodeIac() returns correct CodeArea", () => {
     const codeArea = decode("NPHTQORL9XKP");
-    expect(codeArea.latitude.toFixed(6)).toBe("52.529563");
+    expect(codeArea.latitude.toFixed(6)).toBe("52.529562");
     expect(codeArea.longitude.toFixed(6)).toBe("13.413047");
     expect(codeArea.codePrecision).toBe(11);
     expect(codeArea.latitudeLow.toFixed(6)).toBe("52.529550");
     expect(codeArea.latitudeHigh.toFixed(6)).toBe("52.529575");
     expect(codeArea.longitudeLow.toFixed(6)).toBe("13.413031");
-    expect(codeArea.longitudeHigh.toFixed(6)).toBe("13.413062");
+    expect(codeArea.longitudeHigh.toFixed(6)).toBe("13.413063");
 });
 
 test("toOpenLocationCode() converts from iac to olc correctly", () => {

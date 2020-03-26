@@ -18,6 +18,9 @@ if (process.env.MINIFY) {
 
 export default {
     input: './src/index.ts',
+    external: [
+        "open-location-code-typescript"
+    ],
     output: {
         file: `dist/iota-area-codes${process.env.MINIFY ? '.min' : ''}.js`,
         format: 'umd',

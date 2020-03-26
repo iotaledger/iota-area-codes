@@ -9,8 +9,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@iota/area-codes": "^0.1.0",
-    "axios": "^0.19.0",
+    "@iota/area-codes": "^0.1.1",
+    "axios": "^0.19.2",
     "express": "^4.17.1"
   }
 }

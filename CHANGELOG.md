@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.3
+
+* Dependency update which fixes an issue with floating point precision https://github.com/tspoke/typescript-open-location-code/issues/3
+* Removed typescript-open-location-code as inline dependency
+
 ## v0.1.2
 
 * added padPartial method

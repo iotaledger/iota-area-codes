@@ -52,8 +52,8 @@ test("increasePrecision() can fail on max precision", () => {
 
 test("increasePrecision() can reduce precision", () => {
     const precisions = [
-        { areaCode: "NPHTQORL9XK", reduced: "NPHTQORL9XKP" },
-        { areaCode: "NPHTQORL9", reduced: "NPHTQORL9QP" },
+        { areaCode: "NPHTQORL9XK", reduced: "NPHTQORL9XKQ" },
+        { areaCode: "NPHTQORL9", reduced: "NPHTQORL9QQ" },
         { areaCode: "NPHTQOAA9", reduced: "NPHTQOQQ9" },
         { areaCode: "NPHTAAAA9", reduced: "NPHTQQAA9" },
         { areaCode: "NPAAAAAA9", reduced: "NPQQAAAA9" }
