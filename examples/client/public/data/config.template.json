@@ -2,7 +2,7 @@
     "node": {
         "provider": "NODE1-PROVIDER",
         "depth": NODE1-DEPTH,
-        "mwm": NODE1-MWM,
+        "mwm": NODE1-MWM
     },
     "apiEndpoint": "API-ENDPOINT",
     "queryEndpoint": "QUERY-ENDPOINT",
