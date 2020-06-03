@@ -8,7 +8,6 @@
         "@iota/area-codes": "github:iotaledger/iota-area-codes",
         "@iota/core": "^1.0.0-beta.29",
         "axios": "^0.19.2",
-        "babel-jest": "^26.0.1",
         "classnames": "^2.2.6",
         "google-map-react": "^1.1.7",
         "iota-css-theme": "github:iotaledger/iota-css-theme",
