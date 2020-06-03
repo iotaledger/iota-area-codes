@@ -4,7 +4,7 @@ on:
   push:
     branches: [develop]
     paths:
-      - "client/**"
+      - "examples/client/**"
       - ".github/workflows/client-staging.yaml"
 
 jobs:
