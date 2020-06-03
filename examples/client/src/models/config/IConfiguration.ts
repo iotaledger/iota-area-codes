@@ -31,9 +31,4 @@ export interface IConfiguration {
      * The google maps key.
      */
     googleMapsKey: string;
-
-    /**
-     * The seed to use for address creation.
-     */
-    seed: string;
 }

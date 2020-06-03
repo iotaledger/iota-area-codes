@@ -1,14 +1,9 @@
-## Classes
+## Members
 
 <dl>
 <dt><a href="#CodePrecision">CodePrecision</a></dt>
 <dd><p>Code precision to use for locations.</p>
 </dd>
-</dl>
-
-## Members
-
-<dl>
 <dt><a href="#PRECISIONS">PRECISIONS</a></dt>
 <dd><p>All the available precisions.</p>
 </dd>
@@ -60,24 +55,7 @@
 ## CodePrecision
 Code precision to use for locations.
 
-**Kind**: global class  
-
-* [CodePrecision](#CodePrecision)
-    * [.NORMAL](#CodePrecision.NORMAL)
-    * [.EXTRA](#CodePrecision.EXTRA)
-
-<a name="CodePrecision.NORMAL"></a>
-
-### CodePrecision.NORMAL
-Provides a normal precision code, approximately 14x14 meters.
-
-**Kind**: static property of [<code>CodePrecision</code>](#CodePrecision)  
-<a name="CodePrecision.EXTRA"></a>
-
-### CodePrecision.EXTRA
-Provides an extra precision code, approximately 2x3 meters.
-
-**Kind**: static property of [<code>CodePrecision</code>](#CodePrecision)  
+**Kind**: global variable  
 <a name="PRECISIONS"></a>
 
 ## PRECISIONS

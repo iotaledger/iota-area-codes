@@ -1,4 +1,5 @@
 import * as IotaAreaCodes from "@iota/area-codes";
+import { TRYTE_ALPHABET } from "@iota/converter";
 import { composeAPI, generateAddress } from "@iota/core";
 import { asTransactionObject } from "@iota/transaction-converter";
 import GoogleMapReact, { ClickEventValue } from "google-map-react";
@@ -7,7 +8,6 @@ import React, { Component, ReactNode } from "react";
 import { ServiceFactory } from "../../factories/serviceFactory";
 import { TrytesHelper } from "../../helpers/trytesHelper";
 import { IConfiguration } from "../../models/config/IConfiguration";
-import { ApiClient } from "../../services/apiClient";
 import { ConfigurationService } from "../../services/configurationService";
 import { TangleExplorerService } from "../../services/tangleExplorerService";
 import IACTransactionCard from "../components/IACTransactionCard";
@@ -21,11 +21,6 @@ class Create extends Component<any, CreateState> {
      * The configuration.
      */
     private readonly _configuration: IConfiguration;
-
-    /**
-     * The api client.
-     */
-    private readonly _apiClient: ApiClient;
 
     /**
      * The tangle explorer service.
@@ -55,7 +50,6 @@ class Create extends Component<any, CreateState> {
         super(props);
 
         this._configuration = ServiceFactory.get<ConfigurationService<IConfiguration>>("configuration").get();
-        this._apiClient = new ApiClient(this._configuration.apiEndpoint, (iac, trytes) => this.handleTransaction(iac, trytes));
         this._tangleExplorerService = ServiceFactory.get<TangleExplorerService>("tangleExplorer");
 
         this.state = {
@@ -203,7 +197,8 @@ class Create extends Component<any, CreateState> {
                         provider: this._configuration.node.provider
                     });
 
-                    const nextAddress = generateAddress(this._configuration.seed, 0, 2);
+                    const seed = this.generateHash(81);
+                    const nextAddress = generateAddress(seed, 0, 2);
 
                     const trytes = await iota.prepareTransfers(
                         "9".repeat(81),
@@ -267,6 +262,25 @@ class Create extends Component<any, CreateState> {
     private handleTransaction(iac: string, trytes: string): void {
         this.state.iacTransactions.unshift({ iac, transaction: asTransactionObject(trytes) });
         this.setState({ iacTransactions: this.state.iacTransactions.slice(0, 10) });
+    }
+
+    /**
+     * Generate a random hash.
+     * @param length The length of the hash.
+     * @returns The hash.
+     */
+    private generateHash(length: number = 81): string {
+        let hash = "";
+
+        while (hash.length < length) {
+            const arr = new Uint8Array(1);
+            crypto.getRandomValues(arr);
+            if (arr[0] < 243) {
+                hash += TRYTE_ALPHABET.charAt(arr[0] % 27);
+            }
+        }
+
+        return hash;
     }
 }
 
