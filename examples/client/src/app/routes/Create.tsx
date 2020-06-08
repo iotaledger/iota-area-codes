@@ -8,6 +8,7 @@ import React, { Component, ReactNode } from "react";
 import { ServiceFactory } from "../../factories/serviceFactory";
 import { TrytesHelper } from "../../helpers/trytesHelper";
 import { IConfiguration } from "../../models/config/IConfiguration";
+import { ApiClient } from "../../services/apiClient";
 import { ConfigurationService } from "../../services/configurationService";
 import { TangleExplorerService } from "../../services/tangleExplorerService";
 import IACTransactionCard from "../components/IACTransactionCard";
@@ -26,6 +27,11 @@ class Create extends Component<any, CreateState> {
      * The tangle explorer service.
      */
     private readonly _tangleExplorerService: TangleExplorerService;
+
+    /**
+     * The api client.
+     */
+    private readonly _apiClient: ApiClient;
 
     /**
      * The map object.
@@ -50,6 +56,7 @@ class Create extends Component<any, CreateState> {
         super(props);
 
         this._configuration = ServiceFactory.get<ConfigurationService<IConfiguration>>("configuration").get();
+        this._apiClient = new ApiClient(this._configuration.apiEndpoint);
         this._tangleExplorerService = ServiceFactory.get<TangleExplorerService>("tangleExplorer");
 
         this.state = {
@@ -65,6 +72,13 @@ class Create extends Component<any, CreateState> {
             },
             zoom: 0
         };
+    }
+
+    /**
+     * The component mounted.
+     */
+    public async componentDidMount(): Promise<void> {
+        this._apiClient.subscribe((iac, trytes) => this.handleTransaction(iac, trytes));
     }
 
     /**

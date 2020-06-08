@@ -12,21 +12,27 @@ export class ApiClient {
     /**
      * The web socket to communicate on.
      */
-    private readonly _socket: SocketIOClient.Socket;
+    private _socket?: SocketIOClient.Socket;
 
     /**
      * Called when receiving an IAC event from api.
      */
-    private readonly _iacCallback: (iac: string, trytes: string) => void;
+    private _iacCallback?: (iac: string, trytes: string) => void;
 
     /**
      * Create a new instance of ApiClient.
      * @param endpoint The endpoint for the api.
      * @param iacCallback Called when receiving an IAC event from api.
      */
-    constructor(endpoint: string, iacCallback: (iac: string, trytes: string) => void) {
+    constructor(endpoint: string) {
         this._endpoint = endpoint;
+    }
 
+    /**
+     * Subscribe to the ZMQ messages.
+     * @param iacCallback Called when receiving an IAC event from api.
+     */
+    public subscribe(iacCallback: (iac: string, trytes: string) => void): void {
         this._socket = SocketIOClient(this._endpoint);
 
         this._iacCallback = iacCallback;
@@ -41,7 +47,7 @@ export class ApiClient {
              */
             trytes: string;
         }) => {
-            this._iacCallback(data.iac, data.trytes);
+            iacCallback(data.iac, data.trytes);
         });
     }
 }
