@@ -4,7 +4,7 @@ on:
   push:
     branches: [develop]
     paths:
-      - "examples/query/**"
+      - "examples/queryServer/**"
       - ".github/workflows/query-staging.yaml"
 
 jobs:
