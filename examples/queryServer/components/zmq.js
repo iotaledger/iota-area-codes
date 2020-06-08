@@ -8,7 +8,7 @@ let sock = zmq.socket('sub')
 console.log('Connecting to ZMQ')
 sock.connect(process.env.ZMQ_URL)
 
-sock.subscribe('tx_trytes')
+sock.subscribe('trytes')
 
 sock.on('message', async msg => {
   const data = msg.toString().split(' ') // Split to get topic & data
