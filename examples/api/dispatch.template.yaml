@@ -1,0 +1,5 @@
+dispatch:
+  - url: "%GCP-STAGING-API-DOMAIN%/*"
+    service: %GCP-STAGING-API-SERVICE-ID%
+  - url: "%GCP-STAGING-QUERY-DOMAIN%/*"
+    service: %GCP-STAGING-QUERY-SERVICE-ID%

@@ -8,7 +8,6 @@ import { ServiceFactory } from "../../factories/serviceFactory";
 import { IConfiguration } from "../../models/config/IConfiguration";
 import { ApiClient } from "../../services/apiClient";
 import { ConfigurationService } from "../../services/configurationService";
-import { TangleExplorerService } from "../../services/tangleExplorerService";
 import IACMapMarker from "../components/IACMapMarker";
 import { LiveState } from "./LiveState";
 
@@ -27,26 +26,6 @@ class Live extends Component<any, LiveState> {
     private readonly _apiClient: ApiClient;
 
     /**
-     * The tangle explorer service.
-     */
-    private readonly _tangleExplorerService: TangleExplorerService;
-
-    /**
-     * The map object.
-     */
-    private _map: any;
-
-    /**
-     * The maps object.
-     */
-    private _maps: any;
-
-    /**
-     * Map highlight polygon.
-     */
-    private readonly _highlight: any;
-
-    /**
      * Create a new instance of Live.
      * @param props The props.
      */
@@ -54,8 +33,7 @@ class Live extends Component<any, LiveState> {
         super(props);
 
         this._configuration = ServiceFactory.get<ConfigurationService<IConfiguration>>("configuration").get();
-        this._apiClient = new ApiClient(this._configuration.apiEndpoint, (iac, trytes) => this.handleTransaction(iac, trytes));
-        this._tangleExplorerService = ServiceFactory.get<TangleExplorerService>("tangleExplorer");
+        this._apiClient = new ApiClient(this._configuration.apiEndpoint);
 
         this.state = {
             iacTransactions: [],
@@ -65,6 +43,13 @@ class Live extends Component<any, LiveState> {
                 lng: 13.413047
             }
         };
+    }
+
+    /**
+     * The component mounted.
+     */
+    public async componentDidMount(): Promise<void> {
+        this._apiClient.subscribe((iac, trytes) => this.handleTransaction(iac, trytes));
     }
 
     /**
@@ -82,7 +67,6 @@ class Live extends Component<any, LiveState> {
                         zoom={this.state.zoom}
                         center={this.state.center}
                         onChange={(e) => this.setState({ zoom: e.zoom, center: e.center })}
-                        onGoogleApiLoaded={(e) => this.apiLoaded(e.map, e.maps)}
                         yesIWantToUseGoogleMapApiInternals={true}
                     >
                         {this.state.iacTransactions && this.state.iacTransactions.map((tx, idx) => {
@@ -119,16 +103,6 @@ class Live extends Component<any, LiveState> {
                 </p>
             </React.Fragment>
         );
-    }
-
-    /**
-     * The google maps api was loaded capture the maps and map object.
-     * @param map The map object.
-     * @param maps The maps object.
-     */
-    private apiLoaded(map: any, maps: any): void {
-        this._map = map;
-        this._maps = maps;
     }
 
     /**

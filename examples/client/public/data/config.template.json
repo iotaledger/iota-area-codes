@@ -1,15 +1,14 @@
 {
     "node": {
-        "provider": "https://MYNODE/",
-        "depth": 3,
-        "mwm": 9
+        "provider": "NODE1-PROVIDER",
+        "depth": NODE1-DEPTH,
+        "mwm": NODE1-MWM
     },
-    "seed": "SEED",
     "apiEndpoint": "API-ENDPOINT",
     "queryEndpoint": "QUERY-ENDPOINT",
     "tangleExplorer": {
-        "transactions": "https://devnet.thetangle.org/transaction/:transactionHash",
-        "bundles": "https://devnet.thetangle.org/bundle/:bundleHash"
+        "transactions": "TANGLE-EXPLORER-TRANSACTIONS",
+        "bundles": "TANGLE-EXPLORER-BUNDLES"
     },
     "googleAnalyticsId": "GOOGLE-ANALYTICS-ID",
     "googleMapsKey": "GOOGLE-MAPS-KEY"

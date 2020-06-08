@@ -1,8 +1,7 @@
 require('dotenv').config()
-const { json, send } = require('micro')
-const cors = require('micro-cors')({ allowMethods: ['OPTIONS', 'GET', 'POST'] })
-
-/// Pull in helpers
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const express = require("express");
 const {
   initCassandra,
   fetchTransactions,
@@ -10,31 +9,49 @@ const {
 } = require('./components/db')
 const zmq = require('./components/zmq')
 
-module.exports = cors(async (req, res) => {
-  let response
-  try {
-    switch (req.url) {
-      //// Un-comment when testing
-      // case '/initDatabase':
-      //   initCassandra()
-      //   response = { message: 'Initalizing Cassandra db' }
-      //   break
-      // case '/startSubscribing':
-      //   subscribeToZMQ()
-      //   response = { message: 'Subscribing to ZMQ' }
-      //   break
-      case '/fetch':
-        response = await fetchTransactions()
-        break
-      case '/query':
-        const js = await json(req)
-        response = await queryTransactions(js.iac)
-        break
-      default:
-        return send(res, 404, 'Not found')
+console.log(process.env.ZMQ_URL);
+console.log(process.env.DB_URL);
+
+const app = express();
+
+const corsConfig = {
+  origin: "*",
+  methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["content-type", "authorization"]
+};
+
+app.use(cors(corsConfig));
+
+app.use(bodyParser.json());
+
+//// Un-comment when testing
+// app.get("/initDatabase", async (req, res) => {
+//   initCassandra()
+//   res.setHeader("Content-Type", "application/json");
+//   res.send(JSON.stringify({ message: 'Initalizing Cassandra db' }));
+//   res.end();
+// });
+
+app.get("/fetch", async (req, res) => {
+  const response = await fetchTransactions()
+
+  res.setHeader("Content-Type", "application/json");
+  res.send(response);
+  res.end();
+})
+
+app.post("/query", async (req, res) => {
+  const response = await queryTransactions(req.body.iac)
+
+  res.setHeader("Content-Type", "application/json");
+  res.send(response);
+  res.end();
+})
+
+app.listen(3000, err => {
+    if (err) {
+        throw err;
     }
-  } catch (err) {
-    return send(res, 200, { success: false, message: err.message })
-  }
-  return send(res, 200, response)
+    console.log(`Started API Server`);
+    zmq.startZMQ();
 });

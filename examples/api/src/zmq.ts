@@ -28,7 +28,7 @@ export class Zmq {
 
         this._zmqSocket.on("message", (msg) => this.handleZmqMessage(msg));
 
-        this._zmqSocket.subscribe("tx_trytes");
+        this._zmqSocket.subscribe("trytes");
     }
 
     /**

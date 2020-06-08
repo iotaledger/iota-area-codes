@@ -1,0 +1,51 @@
+name: API Build and Deploy Staging
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - "examples/api/**"
+      - ".github/workflows/api-staging.yaml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      # Build specific env vars
+      CONFIG_ID: staging
+      CONFIG_ZMQ_ENDPOINT: ${{ secrets.STAGING_CONFIG_ZMQ_ENDPOINT }}
+      GCP_SERVICE_ID: ${{ secrets.GCP_API_STAGING_SERVICE_ID }}
+      GCP_API_STAGING_DOMAIN: ${{ secrets.GCP_API_STAGING_DOMAIN }}
+      GCP_API_STAGING_SERVICE_ID: ${{ secrets.GCP_API_STAGING_SERVICE_ID }}
+      GCP_QUERY_STAGING_DOMAIN: ${{ secrets.GCP_QUERY_STAGING_DOMAIN }}
+      GCP_QUERY_STAGING_SERVICE_ID: ${{ secrets.GCP_QUERY_STAGING_SERVICE_ID }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: API Config
+        run: |
+          cd examples/api/src/data/
+          mv config.template.json config.$CONFIG_ID.json
+          sed -i 's/ZMQ-ENDPOINT/${{ env.CONFIG_ZMQ_ENDPOINT }}/g' config.$CONFIG_ID.json
+      - name: GCP Config
+        run: |
+          cd examples/api
+          mv app.template.yaml app.yaml
+          sed -i 's/%SERVICE-ID%/${{ env.GCP_SERVICE_ID }}/g' app.yaml
+          sed -i 's/%CONFIG-ID%/${{ env.CONFIG_ID }}/g' app.yaml
+          mv dispatch.template.yaml dispatch.yaml
+          sed -i 's/%GCP-STAGING-API-DOMAIN%/${{ env.GCP_API_STAGING_DOMAIN }}/g' dispatch.yaml
+          sed -i 's/%GCP-STAGING-API-SERVICE-ID%/${{ env.GCP_API_STAGING_SERVICE_ID }}/g' dispatch.yaml
+          sed -i 's/%GCP-STAGING-QUERY-DOMAIN%/${{ env.GCP_QUERY_STAGING_DOMAIN }}/g' dispatch.yaml
+          sed -i 's/%GCP-STAGING-QUERY-SERVICE-ID%/${{ env.GCP_QUERY_STAGING_SERVICE_ID }}/g' dispatch.yaml
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: latest
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+      - name: Deploy
+        run: |
+          cd examples/api
+          gcloud app deploy app.yaml dispatch.yaml --quiet
