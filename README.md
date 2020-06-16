@@ -58,7 +58,7 @@ To install this package, use one of the following commands:
 
 ## Getting started
 
-For a tutorial on getting started with IACs, see our [documentation portal](https://docs.iota.org/docs/utils/0.1/official/iota-area-codes/overview).
+For a tutorial on getting started with IACs, see our [documentation portal](https://docs.iota.org/docs/iota-area-codes/1.0/overview).
 
 To jump in now, see the following code sample:
 
