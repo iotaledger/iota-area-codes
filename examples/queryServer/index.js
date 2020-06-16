@@ -24,6 +24,11 @@ app.use(cors(corsConfig));
 
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(JSON.stringify({ name: "IOTA Area Codes Query Server" }));
+});
+
 //// Un-comment when testing
 // app.get("/initDatabase", async (req, res) => {
 //   initCassandra()
@@ -49,9 +54,9 @@ app.post("/query", async (req, res) => {
 })
 
 app.listen(3000, err => {
-    if (err) {
-        throw err;
-    }
-    console.log(`Started API Server`);
-    zmq.startZMQ();
+  if (err) {
+    throw err;
+  }
+  console.log(`Started API Server`);
+  zmq.startZMQ();
 });
