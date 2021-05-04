@@ -1,5 +1,7 @@
 <h2 align="center">Geo-location tags for IOTA transactions</h2>
 
+> This repository is now deprecated as it can only be used with the legacy IOTA network.
+
 <p align="center">
   <a href="https://discord.iota.org/" style="text-decoration:none;"><img src="https://img.shields.io/badge/Discord-9cf.svg?logo=discord" alt="Discord"></a>
     <a href="https://iota.stackexchange.com/" style="text-decoration:none;"><img src="https://img.shields.io/badge/StackExchange-9cf.svg?logo=stackexchange" alt="StackExchange"></a>
